@@ -324,19 +324,19 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="about.html">About</a>
-</li>
-<li>
   <a href="plots.html">Plots</a>
 </li>
 <li>
-  <a href="mailto:&lt;you@youremail.com&gt;">
+  <a href="resume.html">Resume</a>
+</li>
+<li>
+  <a href="mailto:&lt;sk5538@cumc.columbia.edu&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://github.com/&lt;YOUR_GH_NAME&gt;/">
+  <a href="https://github.com/shkim24">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -357,17 +357,41 @@ div.tocify {
 
 <div id="some-plots" class="section level1">
 <h1>some plots</h1>
-<pre class="r"><code>library(tidyverse)
-
-df = tibble(
-  x=rnorm(100,2,5),
-  y = 1+2*x-.5*x^2+rnorm(100)
-)
-
-df|&gt;
-  ggplot(aes(x=x,y=y))+
-  geom_point()</code></pre>
-<p><img src="plots_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>library(p8105.datasets)
+library(tidyverse)
+library(ggridges)</code></pre>
+<pre class="r"><code>noaa_df = ny_noaa|&gt;
+   separate(date, into = c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;)|&gt;
+  mutate(
+    tmax = (as.numeric(tmax))/10,
+    tmin = (as.numeric(tmin))/10
+  )</code></pre>
+<pre class="r"><code>noaa_df |&gt;
+  group_by(id, year) |&gt;  
+  summarize(total_prcp = sum(prcp)) |&gt;
+  ungroup()|&gt;
+  ggplot( aes(x = year, y = total_prcp)) +
+  geom_boxplot() +
+  labs(
+    title = &quot;Average Temperature Range by year&quot;,
+    x = &quot;ID&quot;,
+    y = &quot;Average Temperature Range (°C)&quot;
+  ) +
+  theme_minimal()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;id&#39;. You can override using the `.groups`
+## argument.</code></pre>
+<pre><code>## Warning: Removed 4334 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="plots_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>noaa_df|&gt; 
+  filter(snow &gt; 0, snow &lt; 100) |&gt; 
+  ggplot(aes(x = snow, y = factor(year))) +
+  geom_density_ridges() +
+  labs(
+    title = &quot;Disribution of snow by year&quot;
+  )</code></pre>
+<pre><code>## Picking joint bandwidth of 3.76</code></pre>
+<p><img src="plots_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 
 

@@ -1,5 +1,5 @@
 ---
-title: "My awesome website"
+title: "P8105 Website"
 output: 
   html_document:
     toc: true
@@ -7,29 +7,16 @@ output:
     theme: cerulean
 ---
 
-# This is Jeff's awesome website
-index is the home page !
-theme: cosmo? 
+# Senna Kim sk5538
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+This is a website as a part of Fall24 [p8105](https://p8105.com/making_websites.html) for 'making websites'. 
 
-this is an **awesome website**
-
-i use [google](https://www.google.com/) to do data science when i'm stuck
-
-![](images/emma.jpg) markdown formatting
-
-<img src="images/emma.jpg" style="width:75%"> html embedding
+If you'd like to learn more about my experience and education, please visit [this page](resume.html).
 
 
 
-If you'd like to learn more about this website, visit [this page](about.html)
-
-
-
-
-
-
+I have two cats! This is Emma
+![](images/emma.jpg) 
 
 
 

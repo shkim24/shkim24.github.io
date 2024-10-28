@@ -9,14 +9,42 @@ output:
 # some plots
 
 ```{r, message = FALSE}
+library(p8105.datasets)
 library(tidyverse)
-
-df = tibble(
-  x=rnorm(100,2,5),
-  y = 1+2*x-.5*x^2+rnorm(100)
-)
-
-df|>
-  ggplot(aes(x=x,y=y))+
-  geom_point()
+library(ggridges)
 ```
+
+```{r}
+noaa_df = ny_noaa|>
+   separate(date, into = c("year", "month", "day"), sep = "-")|>
+  mutate(
+    tmax = (as.numeric(tmax))/10,
+    tmin = (as.numeric(tmin))/10
+  )
+```
+
+```{r}
+noaa_df |>
+  group_by(id, year) |>  
+  summarize(total_prcp = sum(prcp)) |>
+  ungroup()|>
+  ggplot( aes(x = year, y = total_prcp)) +
+  geom_boxplot() +
+  labs(
+    title = "Average Temperature Range by year",
+    x = "ID",
+    y = "Average Temperature Range (°C)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+noaa_df|> 
+  filter(snow > 0, snow < 100) |> 
+  ggplot(aes(x = snow, y = factor(year))) +
+  geom_density_ridges() +
+  labs(
+    title = "Disribution of snow by year"
+  )
+```
+
