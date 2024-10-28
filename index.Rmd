@@ -1,0 +1,48 @@
+---
+title: "My awesome website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# This is Jeff's awesome website
+index is the home page !
+theme: cosmo? 
+
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+
+this is an **awesome website**
+
+i use [google](https://www.google.com/) to do data science when i'm stuck
+
+![](images/emma.jpg) markdown formatting
+
+<img src="images/emma.jpg" style="width:75%"> html embedding
+
+
+
+If you'd like to learn more about this website, visit [this page](about.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

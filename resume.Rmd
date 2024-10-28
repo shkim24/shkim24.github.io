@@ -1,0 +1,86 @@
+---
+title: "Resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# Su Hyun (Senna) Kim  
+**New York, NY | P: 470-905-9333 | sk5538@cumc.columbia.edu**
+
+---
+
+## Education
+
+**Columbia University**  
+Master of Science, Biostatistics  
+*New York, NY*  
+**Sep 2024 - Present**
+
+**Emory University**  
+Bachelor of Science, Quantitative Science Studies of Psychology  
+*Atlanta, GA*  
+**Aug 2019 – Dec 2023**  
+Cumulative GPA: 3.98/4.00, Highest Honors [Honors thesis](https://etd.library.emory.edu/concern/etds/sn00b0081?locale=en)
+
+---
+
+## Work Experience
+
+**Columbia’s Zuckerman Institute, Iigaya Lab**  
+*Research Assistant*  
+*New York, NY*  
+**Sep 2024 - Present**
+
+- **Project lead**, Antipsychotic recommendation system
+    - Responsible for the comprehensive gathering, cleaning, and analysis of clinical data from 1600 patients related to schizophrenia treatment outcomes.
+    - Collaborate with multidisciplinary teams to ensure integration of clinical insights and data-driven methods.
+    - Leverage advanced statistical techniques to derive insights, enhancing treatment personalization and efficacy.
+
+**Winship Cancer Institute of Emory University, The Brain Imaging Lab**  
+*Research Assistant*  
+*Atlanta, GA*  
+**Aug 2022 – Apr 2024**
+
+- Key contributor to a collaborative project with physicians, using 3D spectroscopic MRI mapping to optimize radiation therapy for glioblastoma patients. [Publication](https://pmc.ncbi.nlm.nih.gov/articles/PMC10204497/)
+    - Managed and integrated complex clinical datasets for multi-site glioblastoma patients.
+    - Applied machine learning algorithms to imaging data, enhancing accuracy in treatment planning.
+    - Conducted comprehensive statistical and survival analyses using Python, yielding critical insights into patient outcomes and contributing to therapeutic strategies.
+- Partnered with psychiatrists on clinical research exploring ketamine's therapeutic effects in major depressive disorder.
+    - Coordinated MRI scans to ensure data accuracy.
+    - Processed imaging data with machine learning algorithms, deepening understanding of treatment efficacy.
+    - Improved data management workflows, providing actionable insights.
+
+**Jeju National University School of Medicine**  
+*Research Assistant*  
+*Jeju, South Korea*  
+**May 2018 - May 2019**
+
+- Conducted case studies of Severe Fever with Thrombocytopenia Syndrome (SFTSV) infections in Jeju, South Korea. [Publication 1](https://pubmed.ncbi.nlm.nih.gov/29943715/), [Publication 2](https://pubmed.ncbi.nlm.nih.gov/30334706/)
+
+**North London Collegiate School Jeju**  
+*Elementary School Chemistry Lab Instructor*  
+*Jeju, South Korea*  
+**Aug 2016 - May 2019**
+
+- Developed and delivered a hands-on experimental chemistry curriculum for grades 3-6, promoting STEM interest.
+- Donated instructional booklets to local schools.
+
+---
+
+## National Meeting Abstracts
+
+- **Su Hyun Kim**, Trivedi, Anuradha G., Karthik K. Ramesh, Brent D. Weinberg, E. Hui-Kuo G. Shu, Hyunsuk Shim, and Eduard Schreibmann. *Potential utility of spectroscopic MRI-based adaptive RT for glioblastoma identified by a quantitative RT volume analysis pipeline*. American Association for Physics in Medicine, Annual Meeting, Houston, TX, July 2023 *(Oral)*
+
+- Trivedi, Anuradha G., **Su Hyun Kim**, Karthik K. Ramesh, Brent D. Weinberg, E. Hui-Kuo G. Shu, Eduard Schreibmann, Hyunsuk Shim. *Automated analysis pipeline using longitudinal spectroscopic MRI data to assess therapy response in GBM patients*. RSNA Annual Meeting, Chicago, IL, November 2023 *(Oral)*
+
+---
+
+## Skills
+
+- **Programming:** Python, R, SAS
+- **Software / Tools:** Natural Language Processing, AWS services, Machine learning
+- **Languages:** English, Korean
+- **Other:** Manuscript writing, Collaboration, Teamwork
