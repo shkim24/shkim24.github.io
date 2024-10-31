@@ -13,10 +13,9 @@ This is a website as a part of Fall24 [p8105](https://p8105.com/making_websites.
 
 If you'd like to learn more about my experience and education, please visit [this page](resume.html).
 
+If you'd like to look at some examples of data visualization using the NOAA National Climatic Data Center [dataset](https://p8105.com/dataset_noaa.html), visit the [plots page](plots.html) or [this dashboad](dashboard.html)
 
 
-I have two cats! This is Emma
-![](images/emma.jpg) 
 
 
 

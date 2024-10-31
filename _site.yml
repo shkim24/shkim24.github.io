@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "Plots"
       href: plots.html
+    - text: "Dashboad"
+      href: dashboard.html
     - text: "Resume"
       href: resume.html
     - icon: fa-envelope fa-lg

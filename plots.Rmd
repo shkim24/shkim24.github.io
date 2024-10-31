@@ -1,50 +1,90 @@
 ---
-title: "Plots"
+title: "plotly"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: cerulean
 ---
-# some plots
-
+Necessary packages are loaded. 
 ```{r, message = FALSE}
 library(p8105.datasets)
 library(tidyverse)
-library(ggridges)
+library(plotly)
+library(flexdashboard)
 ```
 
+NOAA dataset is used to generate the plots below. 
 ```{r}
 noaa_df = ny_noaa|>
    separate(date, into = c("year", "month", "day"), sep = "-")|>
   mutate(
     tmax = (as.numeric(tmax))/10,
-    tmin = (as.numeric(tmin))/10
+    tmin = (as.numeric(tmin))/10,
+    tdiff = tmax-tmin
   )
 ```
+
 
 ```{r}
 noaa_df |>
   group_by(id, year) |>  
   summarize(total_prcp = sum(prcp)) |>
   ungroup()|>
-  ggplot( aes(x = year, y = total_prcp)) +
-  geom_boxplot() +
-  labs(
-    title = "Average Temperature Range by year",
-    x = "ID",
-    y = "Average Temperature Range (°C)"
-  ) +
-  theme_minimal()
+  plot_ly(
+        x = ~factor(year), 
+        y = ~total_prcp, 
+        type = 'box', 
+        jitter = 0.3,       
+        pointpos = -1.8,    
+        text = ~total_prcp, 
+        marker = list(size = 4, opacity = 0.5)) |>
+  layout(
+    title = "Distribution of Total Precipitation by Year",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Total Precipitation")
+  )
 ```
 
+
+
 ```{r}
-noaa_df|> 
-  filter(snow > 0, snow < 100) |> 
-  ggplot(aes(x = snow, y = factor(year))) +
-  geom_density_ridges() +
-  labs(
-    title = "Disribution of snow by year"
+noaa_df |>
+  filter(year == 2000) |>
+  group_by(month) |>
+  summarise(
+    no_snow_days = sum(snow == 0, na.rm = TRUE),
+    snow_days = sum(snow > 0, na.rm = TRUE))|>
+  pivot_longer(cols = c(no_snow_days, snow_days),
+               names_to = "snow_condition",
+               values_to = "count")|>
+  plot_ly( x = ~factor(month), y = ~count, color = ~snow_condition, 
+        type = 'bar', 
+        text = ~count,
+        textposition = 'auto') |>
+  layout(
+    title = "Count of Snow Days by Month in 2000",
+    xaxis = list(title = "Month", tickvals = 1:12, ticktext = month.abb),
+    yaxis = list(title = "Count"),
+    barmode = 'dodge',
+    legend = list(title = list(text = 'Snow Condition'))
   )
+```
+
+
+
+```{r}
+tmax_2000=noaa_df|>
+  filter (year == 2000)|>
+  ggplot(aes(x = as.Date(paste(year, month, day, sep = "-")), y = tmax)) +
+  geom_smooth() +
+  labs(
+    title = "Maximum Temperature Over Time in 2000",
+    x = "Date",
+    y = "Temperature Difference (tdiff)"
+  ) +
+  theme_minimal()
+
+ggplotly(tmax_2000)
 ```
 

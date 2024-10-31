@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="author" content="Senna" />
+
+
+
+<title>Dashboard</title>
+
+<meta property="og:title" content="Dashboard" />
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+<link rel="icon" href="data:image/x-icon;" type="image/x-icon">
+
+
+<script type="text/javascript">
+window.FlexDashboardComponents = [];
+</script>
+
+<script id="flexdashboard-navbar" type="application/json">
+[{"title":"Source Code","icon":"fa-code","href":"source_embed","align":"right"}]
+</script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/value-box-accent-static-0.6.2/theme-cosmo-value-box.css" rel="stylesheet" />
+<link href="site_libs/featherlight-1.3.5/featherlight.min.css" rel="stylesheet" />
+<script src="site_libs/featherlight-1.3.5/featherlight.min.js"></script>
+<link href="site_libs/prism-1.4.1/prism.css" rel="stylesheet" />
+<script src="site_libs/prism-1.4.1/prism.js"></script>
+<link href="site_libs/flexdashboard-css-0.6.2/flexdashboard.min.css" rel="stylesheet" />
+<link href="site_libs/flexdashboard-css-0.6.2/theme-cosmo.css" rel="stylesheet" />
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<style type="text/css">
+/*
+  CSS for flexdashboard.js' use of Sly(). The sizing/position of this CSS needs to be
+  applied _before_ flexdashboard.js initializes, which is why this CSS has been pulled
+  out from flexdashboard.scss and inlined in the document's head.
+*/
+
+.storyboard-nav button {
+  background: transparent;
+  border: 0;
+  opacity: .3;
+  outline: none;
+  padding: 0;
+}
+
+.storyboard-nav button:hover,
+.storyboard-nav button:hover {
+  opacity: .5;
+}
+
+.storyboard-nav button:disabled,
+.storyboard-nav button:disabled {
+  opacity: .1;
+}
+
+.storyboard-nav .sbnext,
+.storyboard-nav .sbprev {
+  float: left;
+  width: 2%;
+  height: 120px;
+}
+
+.storyboard-nav .sbprev {
+  text-align: left;
+  width: 2%;
+}
+
+.storyboard-nav .sbnext {
+  float: right;
+  text-align: right;
+  margin-right: 8px;
+}
+
+.storyboard-nav .sbframelist {
+  margin: 0 auto;
+  width: 94%;
+  height: 120px;
+  overflow: hidden;
+  text-shadow: none;
+  margin-bottom: 8px;
+}
+
+.storyboard-nav .sbframelist ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.storyboard-nav .sbframelist ul li {
+  float: left;
+  width: 270px;
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+  margin-right: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.storyboard-nav .sbframelist ul li:last-child {
+  margin-right: 0px;
+}
+
+.sbframe-commentary {
+  width: 300px;
+}
+
+.sbframe-commentary ul {
+  padding-left: 22px;
+}
+
+.sbframe.active {
+  display: flex;
+}
+
+.sbframe:not(.active) {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+html, body {
+  height: 100%;
+}
+
+#dashboard-container {
+  height: 100%;
+}
+}
+</style>
+
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+
+<span class="navbar-logo pull-left">
+  
+</span>
+<span class="navbar-brand">
+  Dashboard
+  <span class="navbar-author">
+    Senna
+    </span>
+</span>
+
+<button id="navbar-button" type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-left">
+</ul>
+<ul class="nav navbar-nav navbar-right">
+</ul>
+</div><!--/.nav-collapse-->
+</div><!--/.container-->
+</div><!--/.navbar-->
+
+<script type="text/javascript">
+
+
+var FlexDashboard = (function () {
+
+  // initialize options
+  var _options = {};
+
+  var FlexDashboard = function() {
+
+    // default options
+    _options = $.extend(_options, {
+      theme: "cosmo",
+      fillPage: false,
+      orientation: 'columns',
+      storyboard: false,
+      defaultFigWidth: 576,
+      defaultFigHeight: 461,
+      defaultFigWidthMobile: 360,
+      defaultFigHeightMobile: 461,
+      isMobile: false,
+      isPortrait: false,
+      resize_reload: true
+    });
+  };
+
+  function init(options) {
+
+    // extend default options
+    $.extend(true, _options, options);
+
+    // add ids to sections that don't have them (pandoc won't assign ids
+    // to e.g. sections with titles consisting of only chinese characters)
+    var nextId = 1;
+    $('.level1:not([id]),.level2:not([id]),.level3:not([id])').each(function() {
+      $(this).attr('id', 'dashboard-' + nextId++);
+    });
+
+    // find navbar items
+    var navbarItems = $('#flexdashboard-navbar');
+    if (navbarItems.length)
+      navbarItems = JSON.parse(navbarItems.html());
+    addNavbarItems(navbarItems);
+
+    // find the main dashboard container
+    var dashboardContainer = $('#dashboard-container');
+
+    // resolve mobile classes
+    resolveMobileClasses(dashboardContainer);
+
+    // one time global initialization for components
+    componentsInit(dashboardContainer);
+
+    // look for a global sidebar
+    var globalSidebar = dashboardContainer.find(".section.level1.sidebar");
+    if (globalSidebar.length > 0) {
+
+      // global layout for fullscreen displays
+      if (!isMobilePhone()) {
+
+         // hoist it up to the top level
+         globalSidebar.insertBefore(dashboardContainer);
+
+         // lay it out (set width/positions)
+         layoutSidebar(globalSidebar, dashboardContainer);
+
+      // tuck sidebar into first page for mobile phones
+      } else {
+
+        // convert it into a level3 section
+        globalSidebar.removeClass('sidebar');
+        globalSidebar.removeClass('level1');
+        globalSidebar.addClass('level3');
+        var h1 = globalSidebar.children('h1');
+        var h3 = $('<h3></h3>');
+        h3.append(h1.contents());
+        h3.insertBefore(h1);
+        h1.detach();
+
+        // move it into the first page
+        var page = dashboardContainer.find('.section.level1').first();
+        if (page.length > 0)
+          page.prepend(globalSidebar);
+      }
+    }
+
+    // look for pages to layout
+    var pages = $('div.section.level1');
+    if (pages.length > 0) {
+
+        // find the navbar and collapse on clicked
+        var navbar = $('#navbar');
+        navbar.on("click", "a[data-toggle!=dropdown]", null, function () {
+           navbar.collapse('hide');
+        });
+
+        // envelop the dashboard container in a tab content div
+        dashboardContainer.wrapInner('<div class="tab-content"></div>');
+
+        pages.each(function(index) {
+
+          // lay it out
+          layoutDashboardPage($(this));
+
+          // add it to the navbar
+          addToNavbar($(this), index === 0);
+
+        });
+
+    } else {
+
+      // remove the navbar and navbar button if we don't
+      // have any navbuttons
+      if (navbarItems.length === 0) {
+        $('#navbar').remove();
+        $('#navbar-button').remove();
+      }
+
+      // add the storyboard class if requested
+      if (_options.storyboard)
+        dashboardContainer.addClass('storyboard');
+
+      // layout the entire page
+      layoutDashboardPage(dashboardContainer);
+    }
+
+    // if we are in shiny we need to trigger a window resize event to
+    // force correct layout of shiny-bound-output elements
+    if (isShinyDoc())
+      $(window).trigger('resize');
+
+    // make main components visible
+    $('.section.sidebar').css('visibility', 'visible');
+    dashboardContainer.css('visibility', 'visible');
+
+    // handle location hash
+    handleLocationHash();
+
+    // intialize prism highlighting
+    initPrismHighlighting();
+
+    // record mobile and orientation state then register a handler
+    // to refresh if resize_reload is set to true and it changes
+    _options.isMobile = isMobilePhone();
+    _options.isPortrait = isPortrait();
+    if (_options.resize_reload) {
+      $(window).on('resize', function() {
+        if (_options.isMobile !== isMobilePhone() ||
+            _options.isPortrait !== isPortrait()) {
+          window.location.reload();
+        }
+      });
+    } else {
+      // if in desktop mode and resizing to mobile, make sure the heights are 100%
+      // This enforces what `fillpage.css` does for "wider" pages.
+      // Since we are not reloading once the page becomes small, we need to force the height to 100%
+      // This is a new situation introduced when `_options.resize_reload` is `false`
+      if (! _options.isMobile) {
+        // only add if `fillpage.css` was added in the first place
+        if (_options.fillPage) {
+          // fillpage.css
+          $("html,body,#dashboard").css("height", "100%");
+        }
+      }
+    }
+    // trigger layoutcomplete event
+    dashboardContainer.trigger('flexdashboard:layoutcomplete');
+  }
+
+  function resolveMobileClasses(dashboardContainer) {
+     // add top level layout class
+    dashboardContainer.addClass(isMobilePhone() ? 'mobile-layout' :
+                                                  'desktop-layout');
+
+    // look for .mobile sections and add .no-mobile to their peers
+    var mobileSections = $('.section.mobile');
+    mobileSections.each(function() {
+       var id = $(this).attr('id');
+       var nomobileId = id.replace(/-\d+$/, '');
+       $('#' + nomobileId).addClass('no-mobile');
+    });
+  }
+
+  function addNavbarItems(navbarItems) {
+
+    var navbarLeft = $('ul.navbar-left');
+    var navbarRight = $('ul.navbar-right');
+
+    for (var i = 0; i<navbarItems.length; i++) {
+
+      // get the item
+      var item = navbarItems[i];
+
+      // determine the container
+      var container = null;
+      if (item.align === "left")
+        container = navbarLeft;
+      else
+        container = navbarRight;
+
+      // navbar menu if we have multiple items
+      if (item.items) {
+        var menu = navbarMenu(null, item.icon, item.title, container);
+        for (var j = 0; j<item.items.length; j++) {
+          var subItem = item.items[j];
+          var li = $('<li></li>');
+          var a = navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target);
+          a.removeClass("nav-link").addClass("dropdown-item");
+          li.append(a);
+          menu.append(li);
+        }
+      } else {
+        var li = $('<li class="nav-item"></li>');
+        li.append(navbarLink(item.icon, item.title, item.href, item.target));
+        container.append(li);
+      }
+    }
+  }
+
+  // create or get a reference to an existing dropdown menu
+  function navbarMenu(id, icon, title, container) {
+    var existingMenu = [];
+    if (id)
+      existingMenu = container.children('#' + id);
+    if (existingMenu.length > 0) {
+      return existingMenu.children('ul');
+    } else {
+      var li = $('<li class="nav-item"></li>');
+      if (id)
+        li.attr('id', id);
+      li.addClass('dropdown');
+      // auto add "Share" title on mobile if necessary
+      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
+        title = "Share";
+      if (title) {
+        title = title + ' <span class="caret"></span>';
+      }
+      var a = navbarLink(icon, title, "#");
+      a.addClass('dropdown-toggle');
+      a.attr('data-toggle', 'dropdown');
+      a.attr('data-bs-toggle', 'dropdown');
+      a.attr('role', 'button');
+      a.attr('aria-expanded', 'false');
+      li.append(a);
+      var ul = $('<ul class="dropdown-menu"></ul>');
+      ul.attr('role', 'menu');
+      li.append(ul);
+      container.append(li);
+      return ul;
+    }
+  }
+
+  function addToNavbar(page, active) {
+
+    // capture the id and data-icon attribute (if any)
+    var id = page.attr('id');
+    var icon = page.attr('data-icon');
+    var navmenu = page.attr('data-navmenu');
+    var navmenuIcon = page.attr('data-navmenu-icon');
+
+    // get hidden state (transfer this to navbar)
+    var hidden = page.hasClass('hidden');
+    page.removeClass('hidden');
+
+    // sanitize the id for use with bootstrap tabs
+    id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+    page.attr('id', id);
+
+    // get the wrapper
+    var wrapper = page.closest('.dashboard-page-wrapper');
+
+    // move the id to the wrapper
+    page.removeAttr('id');
+    wrapper.attr('id', id);
+
+    // add the tab-pane class to the wrapper
+    wrapper.addClass('tab-pane');
+
+    // get a reference to the h1, discover its inner contens, then detach it
+    var h1 = wrapper.find('h1').first();
+    var title = h1.contents();
+    h1.detach();
+
+    // create a navbar item
+    var li = $('<li></li>');
+    var a = navbarLink(icon, title, '#' + id);
+    a.attr('data-toggle', 'tab');
+    a.attr('data-bs-toggle', 'tab');
+    li.append(a);
+
+    // add it to the navbar (or navbar menu if specified)
+    var container = $('ul.navbar-left');
+    if (navmenu) {
+      var menuId = navmenu.replace(/\s+/g, '');
+      var menu = navbarMenu(menuId, navmenuIcon, navmenu, container);
+      li.find("> a").removeClass("nav-link").addClass("dropdown-item");
+      menu.append(li);
+    } else {
+      li.addClass("nav-item")
+      container.append(li);
+    }
+
+    // mark active tab and corresponding nav menu item
+    if (active)
+      $(a).tab("show");
+
+    // hide it if requested
+    if (hidden)
+      li.addClass('hidden');
+  }
+
+  function navbarLink(icon, title, href, target) {
+
+    var a = $('<a class="nav-link"></a>');
+    if (icon) {
+
+      // get the name of the icon set and icon
+      var dashPos = icon.indexOf("-");
+      var iconSet = null;
+      var iconSplit = icon.split(" ");
+      if (iconSplit.length > 1) {
+        iconSet = iconSplit[0];
+        icon = iconSplit.slice(1).join(" ");
+      } else {
+        iconSet = icon.substring(0, dashPos);
+      }
+      var iconName = icon.substring(dashPos + 1);
+
+      // create the icon
+      var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
+      if (title)
+        iconElement.css('margin-right', '7px');
+      a.append(iconElement);
+      // if href is null see if we can auto-generate based on icon (e.g. social)
+      if (!href)
+        maybeGenerateLinkFromIcon(iconName, a);
+    }
+    if (title)
+      a.append(title);
+
+    // add the href.
+    if (href) {
+      if (href === "source_embed") {
+        a.attr('href', '#');
+        a.attr('data-featherlight', "#flexdashboard-source-code");
+        a.featherlight({
+            beforeOpen: function(event){
+              $('body').addClass('unselectable');
+            },
+            afterClose: function(event){
+              $('body').removeClass('unselectable');
+            }
+        });
+      } else {
+        a.attr('href', href);
+      }
+    }
+
+    // add the arget
+    if (target)
+      a.attr('target', target);
+
+    return a;
+  }
+
+  // auto generate a link from an icon name (e.g. twitter) when possible
+  function maybeGenerateLinkFromIcon(iconName, a) {
+
+     var serviceLinks = {
+      "twitter": "https://twitter.com/share?text=" + encodeURIComponent(document.title) + "&url="+encodeURIComponent(location.href),
+      "facebook": "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href),
+      "linkedin": "https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title),
+      "pinterest": "https://pinterest.com/pin/create/link/?url="+encodeURIComponent(location.href) + "&description=" + encodeURIComponent(document.title)
+    };
+
+    var makeSocialLink = function(a, href) {
+      a.attr('href', '#');
+      a.on('click', function(e) {
+        e.preventDefault();
+        window.open(href);
+      });
+    };
+
+    $.each(serviceLinks, function(key, value) {
+      if (iconName.indexOf(key) !== -1)
+        makeSocialLink(a, value);
+    });
+  }
+
+  // layout a dashboard page
+  function layoutDashboardPage(page) {
+
+    // use a page wrapper so that free form content above the
+    // dashboard appears at the top rather than the side (as it
+    // would without the wrapper in a column orientation)
+    var wrapper = $('<div class="dashboard-page-wrapper"></div>');
+    page.wrap(wrapper);
+
+    // if there are no level2 or level3 headers synthesize a level3
+    // header to contain the (e.g. frame it, scroll container, etc.)
+    var headers = page.find('h2,h3');
+    if (headers.length === 0)
+      page.wrapInner('<div class="section level3"></div>');
+
+    // hoist up any content before level 2 or level 3 headers
+    var children = page.children();
+    children.each(function(index) {
+      if ($(this).hasClass('level2') || $(this).hasClass('level3'))
+        return false;
+      $(this).insertBefore(page);
+    });
+
+    // determine orientation and fillPage behavior for distinct media
+    var orientation, fillPage, storyboard;
+
+    // media: mobile phone
+    if (isMobilePhone()) {
+
+      // if there is a sidebar we need to ensure it's content
+      // is properly framed as an h3
+      var sidebar = page.find('.section.sidebar');
+      sidebar.removeClass('sidebar');
+      sidebar.wrapInner('<div class="section level3"></div>');
+      var h2 = sidebar.find('h2');
+      var h3 = $('<h3></h3>');
+      h3.append(h2.contents());
+      h3.insertBefore(h2);
+      h2.detach();
+
+      // wipeout h2 elements then enclose them in a single h2
+      var level2 = page.find('div.section.level2');
+      level2.each(function() {
+        level2.children('h2').remove();
+        level2.children().unwrap();
+      });
+      page.wrapInner('<div class="section level2"></div>');
+
+      // substitute mobile images
+      if (isPortrait()) {
+        var mobileFigures = $('img.mobile-figure');
+        mobileFigures.each(function() {
+          // get the src (might be base64 encoded)
+          var src = $(this).attr('src');
+
+          // find it's peer
+          var id = $(this).attr('data-mobile-figure-id');
+          var img = $('img[data-figure-id=' + id + "]");
+          img.attr('src', src)
+             .attr('width', _options.defaultFigWidthMobile)
+             .attr('height', _options.defaultFigHeightMobile);
+        });
+      }
+
+      // hoist storyboard commentary into it's own section
+      if (page.hasClass('storyboard')) {
+        var commentaryHR = page.find('div.section.level3 hr');
+        commentaryHR.each(function() {
+          var commentary = $(this).nextAll().detach();
+          var commentarySection = $('<div class="section level3"></div>');
+          commentarySection.append(commentary);
+          commentarySection.insertAfter($(this).closest('div.section.level3'));
+          $(this).remove();
+        });
+      }
+
+      // force a non full screen layout by columns
+      orientation = _options.orientation = 'columns';
+      fillPage = _options.fillPage = false;
+      storyboard = _options.storyboard = false;
+
+    // media: desktop
+    } else {
+
+      // determine orientation
+      orientation = page.attr('data-orientation');
+      if (orientation !== 'rows' && orientation != 'columns')
+        orientation = _options.orientation;
+
+      // determine storyboard mode
+      storyboard = page.hasClass('storyboard');
+
+      // fillPage based on options (force for storyboard)
+      fillPage = _options.fillPage || storyboard;
+
+      // handle sidebar
+      var sidebar = page.find('.section.level2.sidebar');
+      if (sidebar.length > 0)
+        layoutSidebar(sidebar, page);
+    }
+
+    // give it and it's parent divs height: 100% if we are in fillPage mode
+    if (fillPage) {
+      page.addClass('vertical-layout-fill');
+      page.css('height', '100%');
+      page.parents('div').css('height', '100%');
+    } else {
+      page.addClass('vertical-layout-scroll');
+    }
+
+    // perform the layout
+    if (storyboard)
+      layoutPageAsStoryboard(page);
+    else if (orientation === 'rows')
+      layoutPageByRows(page, fillPage);
+    else if (orientation === 'columns')
+      layoutPageByColumns(page, fillPage);
+  }
+
+  function layoutSidebar(sidebar, content) {
+
+    // get it out of the header hierarchy
+    sidebar = sidebar.first();
+    if (sidebar.hasClass('level1')) {
+      sidebar.removeClass('level1');
+      sidebar.children('h1').remove();
+    } else if (sidebar.hasClass('level2')) {
+      sidebar.removeClass('level2');
+      sidebar.children('h2').remove();
+    }
+
+    // determine width
+    var sidebarWidth = isTablet() ? 220 : 250;
+    var dataWidth = parseInt(sidebar.attr('data-width'));
+    if (dataWidth)
+      sidebarWidth = dataWidth;
+
+    // set the width and shift the page right to accomodate the sidebar
+    sidebar.css('width', sidebarWidth + 'px');
+    content.css('padding-left', sidebarWidth + 'px');
+
+    // wrap it's contents in a form
+    sidebar.wrapInner($('<form></form>'));
+  }
+
+  function layoutPageAsStoryboard(page) {
+
+    // create storyboard navigation
+    var nav = $('<div class="storyboard-nav"></div>');
+
+    // add navigation buttons
+    var prev = $('<button class="sbprev"><i class="fa fa-angle-left"></i></button>');
+    nav.append(prev);
+    var next= $('<button class="sbnext"><i class="fa fa-angle-right"></i></button>');
+    nav.append(next);
+
+    // add navigation frame
+    var frameList = $('<div class="sbframelist"></div>');
+    nav.append(frameList);
+    var ul = $('<ul></ul>');
+    frameList.append(ul);
+
+     // find all the level3 sections (those are the storyboard frames)
+    var frames = page.find('div.section.level3');
+    frames.each(function() {
+
+      // mark it
+      $(this).addClass('sbframe');
+
+      // divide it into chart content and (optional) commentary
+      $(this).addClass('dashboard-column-orientation');
+
+      // stuff the chart into it's own div w/ flex
+      $(this).wrapInner('<div class="sbframe-component"></div>');
+      setFlex($(this), 1);
+      var frame = $(this).children('.sbframe-component');
+
+      // extract the title from the h3
+      var li = $('<li></li>');
+      var h3 = frame.children('h3');
+      li.append(h3.contents());
+      h3.detach();
+      ul.append(li);
+
+      // extract commentary
+      var hr = frame.children('hr');
+      if (hr.length) {
+        var commentary = hr.nextAll().detach();
+        hr.remove();
+        var commentaryFrame = $('<div class="sbframe-commentary"></div>');
+        commentaryFrame.addClass('flowing-content-shim');
+        commentaryFrame.addClass('flowing-content-container');
+        commentaryFrame.append(commentary);
+        $(this).append(commentaryFrame);
+
+        // look for a data-commentary-width attribute
+        var commentaryWidth = $(this).attr('data-commentary-width');
+        if (commentaryWidth)
+          commentaryFrame.css('width', commentaryWidth + 'px');
+      }
+
+      // layout the chart (force flex)
+      var result = layoutChart(frame, true);
+
+      // ice the notes if there are none
+      if (!result.notes)
+        frame.find('.chart-notes').remove();
+
+      // set flex on chart
+      setFlex(frame, 1);
+    });
+
+    // create a div to hold all the frames
+    var frameContent = $('<div class="sbframe-content"></div>');
+    frameContent.addClass('dashboard-row-orientation');
+    frameContent.append(frames.detach());
+
+    // row orientation to stack nav and frame content
+    page.addClass('dashboard-row-orientation');
+    page.append(nav);
+    page.append(frameContent);
+    setFlex(frameContent, 1);
+
+    // initialize sly
+    var sly = new Sly(frameList, {
+    		horizontal: true,
+    		itemNav: 'basic',
+    		smart: true,
+    		activateOn: 'click',
+    		startAt: 0,
+    		scrollBy: 1,
+    		activatePageOn: 'click',
+    		speed: 200,
+    		moveBy: 600,
+    		dragHandle: true,
+    		dynamicHandle: true,
+    		clickBar: true,
+    		keyboardNavBy: 'items',
+    		next: next,
+    		prev: prev
+    	}).init();
+
+    // make first frame active
+    frames.removeClass('active');
+    frames.first().addClass('active');
+
+    // subscribe to frame changed events
+    sly.on('active', function (eventName, itemIndex) {
+      frames.removeClass('active');
+      frames.eq(itemIndex).addClass('active')
+                          .trigger('shown');
+    });
+  }
+
+  function layoutPageByRows(page, fillPage) {
+
+    // row orientation
+    page.addClass('dashboard-row-orientation');
+
+    // find all the level2 sections (those are the rows)
+    var rows = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (rows.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      rows = page.find('div.section.level2');
+    }
+
+    rows.each(function () {
+
+      // flags
+      var haveNotes = false;
+      var haveFlexHeight = true;
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // give it row layout semantics if it's not a tabset
+      if (!isTabset)
+        $(this).addClass('dashboard-row');
+
+      // find all of the level 3 subheads
+      var columns = $(this).find('div.section.level3');
+
+      // determine figureSizes sizes
+      var figureSizes = chartFigureSizes(columns);
+
+      // fixup the columns
+      columns.each(function(index) {
+
+        // layout the chart (force flex if we are in a tabset)
+        var result = layoutChart($(this), isTabset);
+
+        // update flexHeight state
+        if (!result.flex)
+          haveFlexHeight = false;
+
+        // update state
+        if (result.notes)
+          haveNotes = true;
+
+        // set the column flex based on the figure width
+        // (value boxes will just get the default figure width)
+        var chartWidth = figureSizes[index].width;
+        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+
+      });
+
+      // remove empty chart note divs
+      if (isTabset)
+        $(this).find('.chart-notes').filter(function() {
+            return $(this).html() === "&nbsp;";
+        }).remove();
+      if (!haveNotes)
+        $(this).find('.chart-notes').remove();
+
+       // make it a flexbox row
+      if (haveFlexHeight)
+        $(this).addClass('dashboard-row-flex');
+
+      // now we can set the height on all the wrappers (based on maximum
+      // figure height + room for title and notes, or data-height on the
+      // container if specified). However, don't do this if there is
+      // no flex on any of the constituent columns
+      var flexHeight = null;
+      var dataHeight = parseInt($(this).attr('data-height'));
+      if (dataHeight)
+        flexHeight = adjustedHeight(dataHeight, columns.first());
+      else if (haveFlexHeight)
+        flexHeight = maxChartHeight(figureSizes, columns);
+      if (flexHeight) {
+        if (fillPage)
+          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          $(this).css('height', flexHeight + 'px');
+          setFlex($(this), '0 0 ' + flexHeight + 'px');
+        }
+      }
+
+    });
+  }
+
+  function layoutPageByColumns(page, fillPage) {
+
+    // column orientation
+    page.addClass('dashboard-column-orientation');
+
+    // find all the level2 sections (those are the columns)
+    var columns = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (columns.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      columns = page.find('div.section.level2');
+    }
+
+    // layout each column
+    columns.each(function (index) {
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // make it a flexbox column
+      $(this).addClass('dashboard-column');
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // find all the h3 elements
+      var rows = $(this).find('div.section.level3');
+
+      // get the figure sizes for the rows
+      var figureSizes = chartFigureSizes(rows);
+
+      // column flex is the max row width (or data-width if specified)
+      var flexWidth;
+      var dataWidth = parseInt($(this).attr('data-width'));
+      if (dataWidth)
+        flexWidth = dataWidth;
+      else
+        flexWidth = maxChartWidth(figureSizes);
+      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
+
+      // layout each chart
+      rows.each(function(index) {
+
+        // perform the layout
+        var result = layoutChart($(this), false);
+
+        // ice the notes if there are none
+        if (!result.notes)
+          $(this).find('.chart-notes').remove();
+
+        // set flex height based on figHeight, then adjust
+        if (result.flex) {
+          var chartHeight = figureSizes[index].height;
+          chartHeight = adjustedHeight(chartHeight, $(this));
+          if (fillPage)
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+          else {
+            $(this).css('height', chartHeight + 'px');
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+          }
+        }
+      });
+    });
+  }
+
+  function chartFigureSizes(charts) {
+
+    // sizes
+    var figureSizes = new Array(charts.length);
+
+    // check each chart
+    charts.each(function(index) {
+
+      // start with default
+      figureSizes[index] = {
+        width: _options.defaultFigWidth,
+        height: _options.defaultFigHeight
+      };
+
+      // look for data-height or data-width then knit options
+      var dataWidth = parseInt($(this).attr('data-width'));
+      var dataHeight = parseInt($(this).attr('data-height'));
+      var knitrOptions = $(this).find('.knitr-options:first');
+      var knitrWidth, knitrHeight;
+      if (knitrOptions) {
+        knitrWidth = parseInt(knitrOptions.attr('data-fig-width'));
+        knitrHeight =  parseInt(knitrOptions.attr('data-fig-height'));
+      }
+
+      // width
+      if (dataWidth)
+        figureSizes[index].width = dataWidth;
+      else if (knitrWidth)
+        figureSizes[index].width = knitrWidth;
+
+      // height
+      if (dataHeight)
+        figureSizes[index].height = dataHeight;
+      else if (knitrHeight)
+        figureSizes[index].height = knitrHeight;
+    });
+
+    // return sizes
+    return figureSizes;
+  }
+
+  function maxChartHeight(figureSizes, charts) {
+
+    // first compute the maximum height
+    var maxHeight = _options.defaultFigHeight;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].height > maxHeight)
+        maxHeight = figureSizes[i].height;
+
+    // now add offests for chart title and chart notes
+    if (charts.length)
+      maxHeight = adjustedHeight(maxHeight, charts.first());
+
+    return maxHeight;
+  }
+
+  function adjustedHeight(height, chart) {
+    if (chart.length > 0) {
+      var chartTitle = chart.find('.chart-title');
+      if (chartTitle.length)
+        height += chartTitle.first().outerHeight();
+      var chartNotes = chart.find('.chart-notes');
+      if (chartNotes.length)
+        height += chartNotes.first().outerHeight();
+    }
+    return height;
+  }
+
+  function maxChartWidth(figureSizes) {
+    var maxWidth = _options.defaultFigWidth;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].width > maxWidth)
+        maxWidth = figureSizes[i].width;
+    return maxWidth;
+  }
+
+  // layout a chart
+  function layoutChart(chart, forceFlex) {
+
+    // state to return
+    var result = {
+      notes: false,
+      flex: false
+    };
+
+    // extract the title
+    var title = extractTitle(chart);
+
+    // find components that apply to this container
+    var components = componentsFind(chart);
+
+    // if it's a custom component then call it and return
+    var customComponents = componentsCustom(components);
+    if (customComponents.length) {
+      componentsLayout(customComponents, title, chart);
+      result.notes = false;
+      result.flex = forceFlex || componentsFlex(customComponents);
+      return result;
+    }
+
+    // put all the content in a chart wrapper div
+    chart.addClass('chart-wrapper');
+    chart.wrapInner('<div class="chart-stage"></div>');
+    var chartContent = chart.children('.chart-stage');
+
+    // flex the content if appropriate
+    result.flex = forceFlex || componentsFlex(components);
+    if (result.flex) {
+      // add flex classes
+      chart.addClass('chart-wrapper-flex');
+      chartContent.addClass('chart-stage-flex');
+
+      // additional shim to break out of flexbox sizing
+      chartContent.wrapInner('<div class="chart-shim"></div>');
+      chartContent = chartContent.children('.chart-shim');
+    }
+
+    // set custom data-padding attribute
+    var pad = chart.attr('data-padding');
+    if (pad) {
+      if (pad === "0")
+        chart.addClass('no-padding');
+      else {
+        pad = pad + 'px';
+        chartContent.css('left', pad)
+                    .css('top', pad)
+                    .css('right', pad)
+                    .css('bottom', pad)
+      }
+    }
+
+    // call compoents
+    componentsLayout(components, title, chartContent);
+
+    // also activate components on shiny output
+    findShinyOutput(chartContent).on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+
+          // see if we opted out of flex based on our output (for shiny
+          // we can't tell what type of output we have until after the
+          // value is bound)
+          var components = componentsFind(element);
+          var flex = forceFlex || componentsFlex(components);
+          if (!flex) {
+            chart.css('height', "");
+            setFlex(chart, "");
+            chart.removeClass('chart-wrapper-flex');
+            chartContent.removeClass('chart-stage-flex');
+            chartContent.children().unwrap();
+          }
+
+          // perform layout
+          componentsLayout(components, title, element.parent());
+        }, 10);
+      });
+
+    // add the title
+    var chartTitle = $('<div class="chart-title"></div>');
+    chartTitle.append(title);
+    chart.prepend(chartTitle);
+
+    // add the notes section
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    chart.append(chartNotes);
+
+    // attempt to extract notes if we have a component
+    if (components.length)
+      result.notes = extractChartNotes(chartContent, chartNotes);
+
+    // return result
+    return result;
+  }
+
+  // build a tabset from a section div with the .tabset class
+  function layoutTabset(tabset) {
+
+    // check for fade option
+    var fade = tabset.hasClass("tabset-fade");
+    var pills = tabset.hasClass("tabset-pills");
+    var navClass = pills ? "nav-pills" : "nav-tabs";
+
+    // determine the heading level of the tabset and tabs
+    var match = tabset.attr('class').match(/level(\d) /);
+    if (match === null)
+      return;
+    var tabsetLevel = Number(match[1]);
+    var tabLevel = tabsetLevel + 1;
+
+    // find all subheadings immediately below
+    var tabs = tabset.find("div.section.level" + tabLevel);
+    if (!tabs.length)
+      return;
+
+    // create tablist and tab-content elements
+    var tabList = $('<ul class="nav ' + navClass + '" role="tablist"></ul>');
+    $(tabs[0]).before(tabList);
+    var tabContent = $('<div class="tab-content"></div>');
+    $(tabs[0]).before(tabContent);
+
+    // build the tabset
+    var activeTab = 0;
+    tabs.each(function(i) {
+
+      // get the tab div
+      var tab = $(tabs[i]);
+
+      // get the id then sanitize it for use with bootstrap tabs
+      var id = tab.attr('id');
+
+      // see if this is marked as the active tab
+      if (tab.hasClass('active'))
+        activeTab = i;
+
+      // sanitize the id for use with bootstrap tabs
+      id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+      tab.attr('id', id);
+
+      // get the heading element within it and grab it's text
+      var heading = tab.find('h' + tabLevel + ':first');
+      var headingDom = heading.contents();
+
+      // build and append the tab list item
+      var a = $('<a role="tab" data-toggle="tab" data-bs-toggle="tab" class="nav-link"></a>');
+      a.append(headingDom);
+      a.attr('href', '#' + id);
+      a.attr('aria-controls', id);
+      var li = $('<li role="presentation" class="nav-item"></li>');
+      li.append(a);
+      tabList.append(li);
+
+      // set it's attributes
+      tab.attr('role', 'tabpanel');
+      tab.addClass('tab-pane');
+      tab.addClass('tabbed-pane');
+      tab.addClass('no-title');
+      if (fade)
+        tab.addClass('fade');
+
+      // move it into the tab content div
+      tab.detach().appendTo(tabContent);
+    });
+
+    // set active tab
+    $(tabList.children()[activeTab]).tab("show");
+    var active = $(tabContent.children('div.section')[activeTab]);
+    active.addClass('active');
+    if (fade)
+      active.addClass('in');
+
+    // add nav-tabs-custom
+    tabset.addClass('nav-tabs-custom');
+
+    // internal layout is dashboard-column with tab-content flexing
+    tabset.addClass('dashboard-column');
+    setFlex(tabContent, 1);
+  }
+
+  // one time global initialization for components
+  function componentsInit(dashboardContainer) {
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.init)
+        component.init(dashboardContainer);
+    }
+  }
+
+  // find components that apply within a container
+  function componentsFind(container) {
+
+    // look for components
+    var components = [];
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.find(container).length)
+        components.push(component);
+    }
+
+    // if there were none then use a special flowing content component
+    // that just adds a scrollbar in fillPage mode
+    if (components.length == 0) {
+      components.push({
+        find: function(container) {
+          return container;
+        },
+
+        flex: function(fillPage) {
+          return fillPage;
+        },
+
+        layout: function(title, container, element, fillPage) {
+          if (fillPage) {
+            container.addClass('flowing-content-shim');
+            container.addClass('flowing-content-container');
+          }
+        }
+      });
+    }
+
+    return components;
+  }
+
+  // if there is a custom component then pick it out
+  function componentsCustom(components) {
+    var customComponent = [];
+    for (var i=0; i<components.length; i++)
+      if (components[i].type === "custom") {
+        customComponent.push(components[i]);
+        break;
+      }
+    return customComponent;
+  }
+
+  // query all components for flex
+  function componentsFlex(components) {
+
+    // no components at all means no flex
+    if (components.length === 0)
+      return false;
+
+    // otherwise query components (assume true unless we see false)
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++)
+      if (components[i].flex && !components[i].flex(_options.fillPage))
+        return false;
+    return true;
+  }
+
+  // layout all components
+  function componentsLayout(components, title, container) {
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++) {
+      var element = components[i].find(container);
+      if (components[i].layout) {
+        // call layout (don't call other components if it returns false)
+        var result = components[i].layout(title, container, element, _options.fillPage);
+        if (result === false)
+          return;
+      }
+    }
+  }
+
+  // get a reference to the h3, discover it's inner html, and remove it
+  function extractTitle(container) {
+    var h3 = container.children('h3').first();
+    var title = '';
+    if (!container.hasClass('no-title'))
+      title = h3.contents();
+    h3.detach();
+    return title;
+  }
+
+  // extract chart notes
+  function extractChartNotes(chartContent, chartNotes) {
+    // look for a terminating blockquote or image caption
+    var blockquote = chartContent.children('blockquote:last-child');
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
+    if (blockquote.length) {
+      chartNotes.empty().append(blockquote.children('p:first-child').contents());
+      blockquote.remove();
+      return true;
+    } else if (caption.length) {
+      chartNotes.empty().append(caption.contents());
+      caption.remove();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function findShinyOutput(chartContent) {
+    return chartContent.find('.shiny-text-output, .shiny-html-output');
+  }
+
+  // safely detect rendering on a mobile phone
+  function isMobilePhone() {
+    try
+    {
+      return ! window.matchMedia("only screen and (min-width: 768px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  function isFillPage() {
+    return _options.fillPage;
+  }
+
+  // detect portrait mode
+  function isPortrait() {
+    return ($(window).width() < $(window).height());
+  }
+
+  // safely detect rendering on a tablet
+  function isTablet() {
+    try
+    {
+      return window.matchMedia("only screen and (min-width: 769px) and (max-width: 992px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  // test whether this is a shiny doc
+  function isShinyDoc() {
+    return (typeof(window.Shiny) !== "undefined" && !!window.Shiny.outputBindings);
+  }
+
+  // set flex using vendor specific prefixes
+  function setFlex(el, flex) {
+    el.css('-webkit-box-flex', flex)
+      .css('-webkit-flex', flex)
+      .css('-ms-flex', flex)
+      .css('flex', flex);
+  }
+
+  // support bookmarking of pages
+  function handleLocationHash() {
+
+    // restore tab/page from bookmark
+    var hash = window.decodeURIComponent(window.location.hash);
+    if (hash.length > 0) {
+      // Update the tab without .showPage() so that we don't change page history
+      $('ul.nav a[href="' + hash + '"]').tab('show');
+    }
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var hash = window.decodeURIComponent(window.location.hash);
+      var activeTab = $('ul.nav a[href="' + hash + '"]');
+      if (activeTab.length) {
+        activeTab.tab('show');
+      } else {
+        // returning to the base page URL without a hash activates first tab
+        $('ul.nav a:first').tab('show');
+      }
+    });
+
+    // add a hash to the URL when the user clicks on a tab/page
+    $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
+      var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
+      var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
+      var href = baseUrl + hash;
+      FlexDashboardUtils.setLocation(href);
+    });
+
+    // handle clicks of other links that should activate pages
+    var navPages = $('ul.navbar-nav li a[data-toggle=tab]');
+    navPages.each(function() {
+      var href =  $(this).attr('href');
+      var links = $('a[href="' + href + '"][data-toggle!=tab]');
+      links.each(function() {
+        $(this).on('click', function(e) {
+          window.FlexDashboardUtils.showPage(href);
+        });
+      });
+    });
+  }
+
+  // tweak Prism highlighting
+  function initPrismHighlighting() {
+
+    if (window.Prism) {
+      Prism.languages.insertBefore('r', 'comment', {
+        'heading': [
+          {
+            // title 1
+        	  // =======
+
+        	  // title 2
+        	  // -------
+        	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
+            alias: 'operator'
+          },
+          {
+            // ### title 3
+            pattern: /(^\s*)###[^#].+/m,
+            lookbehind: true,
+            alias: 'operator'
+          }
+        ]
+      });
+
+      // prism highlight
+      Prism.highlightAll();
+    }
+  }
+
+  FlexDashboard.prototype = {
+    constructor: FlexDashboard,
+    init: init,
+    isMobilePhone: isMobilePhone,
+    isFillPage: isFillPage
+  };
+
+  return FlexDashboard;
+
+})();
+
+// utils
+window.FlexDashboardUtils = {
+  resizableImage: function(img) {
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    img.parent().css('background', url)
+                .css('background-size', 'contain')
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .addClass('image-container');
+  },
+  setLocation: function(href) {
+    if (history && history.pushState) {
+      history.pushState(null, null, href);
+    } else {
+      window.location.replace(href);
+    }
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 10);
+  },
+  showPage: function(href) {
+    $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+    var baseUrl = this.urlWithoutHash(window.location.href);
+    var loc = baseUrl + href;
+    this.setLocation(loc);
+  },
+  showLinkedValue: function(href) {
+    // check for a page link
+    if ($('ul.navbar-nav li a[data-toggle=tab][href="' + href + '"]').length > 0)
+      this.showPage(href);
+    else
+      window.open(href);
+  },
+  urlWithoutHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(0, hashLoc);
+    else
+      return url;
+  },
+  urlHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(hashLoc);
+    else
+      return "";
+  }
+};
+
+window.FlexDashboard = new FlexDashboard();
+
+// empty content
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    if (container.find('p').length == 0)
+      return container;
+    else
+      return $();
+  }
+})
+
+// plot image
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('p')
+                    .children('img:only-child');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// plot image (figure style)
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.figure').children('img');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// htmlwidget
+window.FlexDashboardComponents.push({
+
+  init: function(dashboardContainer) {
+    // trigger "shown" after initial layout to force static htmlwidgets
+    // in runtime: shiny to be resized after the dom has been transformed
+    dashboardContainer.on('flexdashboard:layoutcomplete', function(event) {
+      setTimeout(function() {
+        dashboardContainer.trigger('shown');
+      }, 200);
+    });
+  },
+
+  find: function(container) {
+    return container.children('div[id^="htmlwidget-"],div.html-widget');
+  }
+});
+
+// gauge
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.html-widget.gauge');
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+
+  }
+
+});
+
+// shiny output
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    return container.children('div[class^="shiny-"]');
+  }
+});
+
+// bootstrap table
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length !== 0)
+      return bsTable;
+    else
+      return container.find('tr.header').parent('thead').parent('table');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var bsTable = element;
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // improve appearance
+    container.addClass('bootstrap-table');
+
+    // for fill page provide scrolling w/ sticky headers
+    if (fillPage) {
+      // force scrollbar on overflow
+      container.addClass('flowing-content-shim');
+
+      // stable table headers when scrolling
+      bsTable.stickyTableHeaders({
+        scrollableArea: container
+      });
+    }
+  }
+});
+
+// embedded shiny app
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('iframe.shiny-frame');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage) {
+      element.attr('height', '100%');
+    } else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (!height)
+        height = element.attr('height');
+      if (!height)
+        element.attr('height', 500);
+    }
+  }
+});
+
+// shiny fillRow or fillCol
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('.flexfill-container');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage)
+      element.css('height', '100%');
+    else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (height === "100%" || height === "auto" || height === "initial" ||
+          height === "inherit" || !height) {
+        element.css('height', 500);
+      }
+    }
+  }
+});
+
+// valueBox
+window.FlexDashboardComponents.push({
+
+  type: "custom",
+
+  find: function(container) {
+    if (container.find('span.value-output, .shiny-valuebox-output').length)
+      return container;
+    else
+      return $();
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var chartTitle = title;
+    var valueBox = element;
+
+    // add value-box class to container
+    container.addClass('value-box');
+
+    // value paragraph
+    var value = $('<p class="value"></p>');
+
+    // if we have shiny-text-output then just move it in
+    var valueOutputSpan = [];
+    var shinyOutput = valueBox.find('.shiny-valuebox-output').detach();
+    if (shinyOutput.length) {
+      valueBox.children().remove();
+      shinyOutput.html("&mdash;");
+      value.append(shinyOutput);
+    } else {
+      // extract the value (remove leading vector index)
+      var chartValue = valueBox.text().trim();
+      chartValue = chartValue.replace("[1] ", "");
+      valueOutputSpan = valueBox.find('span.value-output').detach();
+      valueBox.children().remove();
+      value.text(chartValue);
+    }
+
+    // caption
+    var caption = $('<p class="caption"></p>');
+    caption.append(chartTitle);
+
+    // build inner div for value box and add it
+    var inner = $('<div class="inner"></div>');
+    inner.append(value);
+    inner.append(caption);
+    valueBox.append(inner);
+
+    // add icon if specified
+    var icon = $('<div class="icon"><i></i></div>');
+    valueBox.append(icon);
+    function setIcon(chartIcon) {
+      var iconLib = "";
+      var iconSplit = chartIcon.split(" ");
+      if (iconSplit.length > 1) {
+        iconLib = iconSplit[0];
+        chartIcon = iconSplit.slice(1).join(" ");
+      } else {
+        var components = chartIcon.split("-");
+        if (components.length > 1)
+          iconLib = components[0];
+      }
+      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
+    }
+    var chartIcon = valueBox.attr('data-icon');
+    if (chartIcon)
+      setIcon(chartIcon);
+
+    // handle data attributes in valueOutputSpan
+    function handleValueOutput(valueOutput) {
+
+      // caption
+      var dataCaption = valueOutput.attr('data-caption');
+      if (dataCaption)
+        caption.html(dataCaption);
+
+      // icon
+      var dataIcon = valueOutput.attr('data-icon');
+      if (dataIcon)
+        setIcon(dataIcon);
+
+      // If valueBox(color=) was an accent color, this attr should
+      // be populated with the accent color and the relevant CSS comes
+      // in through HTML dependencies
+      var dataColorAccent = valueOutput.attr('data-color-accent');
+      var valueBoxClasses = "value-box-" + (["primary", "info", "danger", "warning", "success"].join(" value-box-"));
+      if (dataColorAccent) {
+        valueBox.removeClass(valueBoxClasses);
+        valueBox.addClass('value-box-' + dataColorAccent);
+      }
+
+      // If valueBox(color=) was a CSS color, these other data-color-*
+      // attrs will be populated
+      var dataColor = valueOutput.attr('data-color');
+      if (dataColor) {
+        valueBox.removeClass(valueBoxClasses);
+        valueBox.css('background-color', dataColor);
+      }
+      var dataColorText = valueOutput.attr('data-color-text');
+      if (dataColorText) {
+        valueBox.find(".inner").css('color', dataColorText);
+      }
+      var dataColorIcon = valueOutput.attr('data-color-icon');
+      if (dataColorIcon) {
+        valueBox.find(".icon").css('color', dataColorIcon);
+      }
+
+      // url
+      var dataHref = valueOutput.attr('data-href');
+      if (dataHref) {
+        valueBox.addClass('linked-value');
+        valueBox.off('click.value-box');
+        valueBox.on('click.value-box', function(e) {
+          window.FlexDashboardUtils.showLinkedValue(dataHref);
+        });
+      }
+    }
+
+    // check for a valueOutputSpan
+    if (valueOutputSpan.length > 0) {
+      handleValueOutput(valueOutputSpan);
+    }
+
+    // if we have a shinyOutput then bind a listener to handle
+    // new valueOutputSpan values
+    shinyOutput.on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var valueOutputSpan = element.find('span.value-output');
+          if (valueOutputSpan.length > 0)
+            handleValueOutput(valueOutputSpan);
+        }, 10);
+      }
+    );
+  }
+});
+</script>
+
+<div id="dashboard-container">
+
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="column" class="section level2 tabset" data-width="650">
+<h2 class="tabset">Column</h2>
+<div id="chart-a" class="section level3">
+<h3>Chart A</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-91fb2003bd7d1b97a748" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-91fb2003bd7d1b97a748">{"x":{"visdat":{"53cc5f401270":["function () ","plotlyVisDat"]},"cur_data":"53cc5f401270","attrs":{"53cc5f401270":{"x":{},"y":{},"jitter":0.29999999999999999,"pointpos":-1.8,"text":{},"marker":{"size":4,"opacity":0.5},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Total Precipitation by Year","xaxis":{"domain":[0,1],"automargin":true,"title":"Year","type":"category","categoryorder":"array","categoryarray":["1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Total Precipitation"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(31,119,180,0.5)","x":["2006","2004","2005","2006","2004","2005","2006","2006","2008","2005","2006","2006","2007","2010","2008","2007","2005","2008","2010","2010","2010","2006","2008","2009","2010","2010","2009","2010","2004","2010","2006","2005","2008","2009","2010","2004","2004","2005","2006","2010","2005","2004","2006","2009","2009","2010","2007","2010","2004","2005","2005","2004","2004","2006","2004","2006","2005","2009","2010","1989","1990","1991","1994","1996","2004","2005","1998","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1985","1986","1987","1992","1993","1981","1982","1983","1984","1985","1988","1991","1992","1995","1996","1997","2000","2001","2002","2003","2004","2005","2006","2007","2009","2010","1982","1983","1984","1985","1986","1991","1998","1999","2000","2009","2010","1983","1985","1990","1995","1996","2006","2009","1981","1987","1988","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2010","1981","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1984","1985","1986","1987","1988","1990","1991","1992","1993","1994","1996","1997","1998","1999","2000","2001","2002","2005","2008","2009","2010","1984","1986","1987","1989","1990","1991","1992","1993","1994","2003","2004","2005","2007","2008","2009","2010","1981","1983","1984","1985","1986","1989","1990","1991","1994","1996","1998","1999","2000","2001","2002","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1994","1996","1997","1998","1999","2000","2001","2002","2003","2005","2007","2008","2010","1983","1984","1985","1986","1989","1990","1987","1989","1990","1996","1998","1999","2000","2007","2009","1985","1986","1989","1983","1984","1987","1988","1985","1991","1998","1982","1983","1984","1986","1988","1992","1999","1981","1982","1984","1985","1986","1987","1988","1989","1990","1993","1994","1981","1983","1984","1985","1986","1987","1988","1989","1990","1992","1993","1994","1989","1994","1996","2001","1982","1983","1991","1993","1998","2000","1981","1982","1983","1983","1987","1988","1991","1993","1995","1996","1997","1998","2001","2003","2006","2009","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1991","1992","1993","1994","1995","1996","1997","1998","1999","1981","1982","1983","1986","1987","1988","1990","1993","1995","1998","1999","2008","2010","1981","1984","1985","1999","2003","2006","2007","1981","1982","1984","1985","1986","1987","1989","1991","1995","1997","1998","1999","2000","2002","2004","2006","2010","2003","2004","2005","2006","2007","1981","1983","1984","1985","1986","1987","1988","1989","1990","1991","1993","1994","1995","1996","1997","1998","1999","2000","2001","1981","1985","1986","1993","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1985","1992","1981","1982","1983","1993","1994","1981","1984","1985","1987","1988","1989","2001","2002","2003","2004","2008","2009","2010","1981","1981","1983","1985","1987","1988","1989","1990","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2005","2006","2008","1983","1981","1982","1983","1985","1986","1987","1988","1989","1990","1991","1992","1996","1997","1998","1999","2000","2001","2002","2007","2008","2009","2010","1985","1990","2003","2004","2006","2008","2010","1996","1998","1999","2000","2001","2002","2003","2006","2008","2010","2010","1981","1983","1985","1987","1988","1989","1990","1995","1981","1982","1983","1984","1986","1987","1988","1989","1990","1991","1993","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","1981","1983","1984","1981","1986","1989","1998","2009","1984","1987","1996","1997","1998","1999","2000","1981","1985","1998","2000","2001","2002","2003","2004","2005","2006","2007","1981","1983","1984","1985","1987","1990","1992","1994","1996","1998","2000","2002","2003","2004","2005","2006","2008","1981","1982","1986","1987","1988","1989","1990","1991","1992","1993","1994","1996","1997","1998","2005","2006","2007","2008","2010","1981","1982","1983","1985","1986","1987","1990","1991","1992","1993","1994","1995","1996","1997","1999","2000","2002","2003","2006","2007","2009","2010","2009","1981","1982","1983","1984","1986","1988","1989","1990","1992","1993","1994","1995","1997","1998","2009","2010","2003","2005","2006","1981","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","2000","2001","2002","1988","1989","1990","1991","1992","1993","1994","1995","1997","1998","1999","2000","2001","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2006","2009","1982","1983","1984","1986","1988","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1981","1982","1983","1986","1988","1994","2000","1981","1982","1983","1984","1985","1986","1987","1989","1994","1996","2002","2009","2010","1981","1982","1993","1998","2010","2000","1981","1982","1987","1988","1989","1990","1991","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2005","2006","2007","2009","2010","1981","1982","1983","1984","1987","1988","1990","1991","1981","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1995","1996","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1982","1986","1989","1981","1982","1983","1986","1981","1982","1983","1984","1985","1981","1982","1983","1981","1985","2005","2007","2009","2010","1981","1982","1984","1985","1986","1987","1990","1991","1993","1994","1997","1998","1999","2000","2003","2005","2006","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2001","2003","2004","2007","2009","2010","1981","1981","1982","1984","1987","1988","1990","1991","1995","1996","1997","1998","2000","2001","2002","2004","2006","2008","2009","2010","1991","1984","1985","1986","1987","1988","1989","1990","1991","1994","1995","1997","2004","2005","1982","1983","1984","1985","1981","1982","1984","1981","1982","1983","1984","1986","1987","1988","1989","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1988","1989","1991","1993","1994","1981","1982","1983","1984","1986","1987","1989","1990","1991","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2007","2008","1981","1982","1983","1985","1986","1987","1988","1989","1990","1991","1992","1995","1996","1997","1998","1999","2000","2001","2003","2005","2006","2007","2008","2009","1981","1981","1982","1983","1984","1981","1982","1983","1985","1986","1988","1989","1990","1993","1996","1997","1998","2000","2001","2003","2004","1983","1984","1985","1986","1987","1988","1989","1981","1982","1983","1985","1989","1990","1993","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2008","1981","1983","1984","1988","1991","1992","1994","1981","1982","1983","1984","1985","1986","1987","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2008","2010","1981","1983","1984","1995","1997","1998","1999","1982","1983","1984","1985","1986","1988","1989","1990","1991","1994","1996","1997","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","1981","1983","1995","1981","1982","1986","1989","1990","1991","1995","1996","1999","2000","2002","1981","1983","1984","1985","1988","1989","1990","1991","1992","1993","1994","1995","1997","1999","2000","2001","2002","2003","1985","1987","1988","2010","1983","1984","1985","1986","1989","1991","1992","1995","2003","1981","1982","1983","1984","1987","1983","1987","1988","1991","1995","1996","1997","1981","1982","1984","1985","1986","1987","1988","1989","1990","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2010","1981","1982","1991","1993","2003","1981","1982","1985","1986","1991","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2006","2007","2008","2010","1981","1982","1983","1984","1986","1990","1991","1992","1993","1994","1995","1996","1997","1998","1981","1982","1983","1984","1987","1988","1989","1990","1991","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1995","1996","2000","2001","2002","2003","2004","2007","2008","2009","2010","1981","1982","1983","1985","1986","1990","1994","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1983","1984","1985","1987","1989","1990","1991","1992","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2009","2010","1981","1982","2000","2001","2003","2007","2008","1982","1983","1985","1987","1988","1989","1981","1981","1982","1983","1985","1987","1988","1990","1991","1993","1995","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","1986","1981","1982","1983","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1998","2003","2007","1987","1981","1982","1983","1984","1985","1986","1987","1988","1989","1991","2001","2010","1981","1982","1983","1984","1985","1986","1987","1989","1990","1991","1992","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2010","1983","1984","1985","1986","1988","1990","1992","1981","1982","1983","1984","1985","1986","1987","1988","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1982","1983","1987","1988","1989","1990","1992","1993","1994","1981","1982","1983","1984","1985","1986","1987","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2004","2005","2006","2007","2008","2009","2010","1981","1998","1999","1987","2007","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1995","1996","1997","1998","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1990","1991","1985","1986","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2005","2006","2007","2008","2009","2006","2007","2008","2009","2003","2005","2006","2007","2008","1984","1988","1989","1990","1991","1992","1993","1994","1995","1998","1999","2007","2008","2010","1987","1988","1981","1982","1987","1988","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","1981","1982","1983","1984","1986","1987","1990","1991","1992","1994","1995","1996","1998","1999","2000","2001","2002","2003","2005","2006","1981","1988","1991","1998","2002","2006","2008","2009","1994","1995","1996","1997","1998","1999","1981","1982","1983","1984","1986","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1998","1986","1987","1994","2006","1984","1988","1993","1995","1981","1982","1983","1984","1987","1981","1982","1983","1984","1985","1986","1987","1988","1990","1992","1993","1995","1997","1998","1981","1983","1984","1985","1987","1998","1999","2000","2009","1981","1982","1983","1984","1985","1986","1987","1988","1989","1991","1992","1997","1998","2001","2008","1981","1982","1984","1985","1988","1998","1981","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","1981","1983","1981","1983","1988","1989","1990","1991","1992","1990","1993","1994","1997","1998","1999","2000","2002","2003","2004","2005","2006","2007","2008","2009","2010","1982","1985","1987","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1997","1998","1999","2000","2001","2002","2003","2004","2006","2007","2008","2009","2010","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","2000","2001","2002","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2002","2005","2010","1994","1997","1998","2000","2001","2002","2003","2005","2006","2007","2008","2010","1981","1982","1983","1984","1985","1986","1988","1989","1990","1981","1983","1984","1985","1986","1988","1989","1990","1991","1992","1993","1994","1995","1996","2002","1981","1982","1984","1985","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2010","1982","1983","1981","1982","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1986","1988","1989","1990","1991","1992","1996","1998","1999","2000","2002","2003","2004","2005","2006","2007","2008","1981","1981","1983","1984","1985","1986","1987","1988","1989","1990","1992","1993","1994","1995","1996","1997","1981","1983","1984","1985","1986","1987","1988","1989","1990","1991","1989","1994","2005","2007","2008","2009","2010","1992","1981","1985","1988","1989","1990","1998","1999","2000","1990","1993","1995","1997","1998","1999","2000","2001","2002","2003","2004","2010","1998","1999","2000","2002","2003","1981","1983","1985","1989","1990","1991","1992","1987","1988","1989","1990","1991","1992","1994","1997","1998","1981","1983","1984","1985","1987","1988","1993","1994","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2002","2010","1981","1982","1984","1985","1986","1988","1981","1982","1983","1987","1989","1991","1992","1993","1994","1995","1993","1981","1981","1982","1983","1984","1985","1986","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1984","1986","1989","1994","1995","1981","1982","1984","1988","1989","1990","1991","1993","1994","1995","1996","1997","1998","1999","2000","2002","2003","2006","1988","1989","1995","1998","1999","2010","1982","1987","1988","1989","1990","1991","1994","1995","1996","1999","2000","2004","2007","2009","2010","1991","1992","1994","1995","1996","1998","2000","2004","2005","1981","1982","1986","1984","1985","1986","1988","1989","1994","1995","1996","1998","2004","2005","2006","1987","1988","1989","1991","1992","1994","1995","1998","1999","2001","2002","2003","1981","1986","1987","1989","1990","1991","1994","1995","1996","1997","1981","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1994","1995","1996","1997","1998","1999","2001","2002","2006","2007","2009","2010","1982","1983","1984","1986","1987","1988","1994","1995","1996","1997","1998","2001","2002","2003","1983","1984","1985","1987","1988","1990","1993","1996","1998","1999","2000","2001","2003","2005","2007","1998","1999","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1996","1997","1998","1999","2000","2001","2002","2003","1981","1982","1983","1985","1986","1987","1989","1990","1991","1992","1993","1994","1997","1998","2000","2001","2002","2010","1981","1986","1992","1995","1982","1984","1986","1987","1989","1991","1998","1999","2000","2010","1981","1982","1984","1985","1986","1987","1988","1989","1990","1992","1995","1997","1998","1999","2000","2003","1997","1998","1999","2003","2004","2005","1981","1982","1983","1984","1985","1986","1987","1994","1982","1983","1984","1986","1987","1988","1989","1990","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","1990","1991","1992","1993","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2000","2001","2002","2003","2004","2005","1988","1989","1990","1991","1995","1997","2009","1983","1984","1985","1986","1987","1988","1989","1990","1991","1993","1995","1998","2008","1981","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","1987","1994","1981","1983","1984","1985","1986","1987","1988","1991","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1994","1995","1996","1997","1998","1999","2001","2003","2004","2006","1983","1986","1989","2008","2009","1981","1983","1986","1996","1999","2000","2003","2004","2005","2006","2007","2008","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1981","1983","1984","1985","1986","1987","1989","1991","1992","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","1981","1987","1981","1983","1990","1981","1987","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2004","2005","2010","1986","1987","2008","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1994","2008","2010","1982","1983","1988","1991","1992","1994","1995","2000","2007","2009","1982","1981","1985","1986","1989","1990","1994","1995","1997","1998","1999","2001","1981","1982","1985","1986","1987","1988","1989","1990","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2008","2010","1988","1989","1997","1998","1999","2000","2001","2002","1999","2000","2005","1982","1983","1984","1985","1986","1987","1988","1990","1991","1997","1999","2000","2001","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1989","1990","1991","1993","1994","1996","1997","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1998","1999","2000","2001","2002","2003","1981","1982","1983","1984","1985","1986","1990","1991","1992","1993","1994","1995","1996","1997","1998","1982","1983","1985","1987","1989","1992","1993","1994","1997","1998","2000","2001","2002","2003","2010","1981","1982","1983","1984","1985","1986","1987","1989","1990","1993","1994","1995","1996","1998","1999","2000","2002","2003","2005","2006","2007","2009","2010","1981","1982","1983","1984","1985","1986","1987","1981","1985","1986","1991","1992","1993","1995","1996","1997","1998","1999","2000","2002","2003","2004","2006","2007","2008","2009","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2004","2005","2006","2007","2009","1981","1984","1987","1989","1990","1991","1992","1993","1994","1996","1997","1998","1999","2000","2001","2010","1999","1982","1983","1984","1986","1987","1988","1991","1992","1993","1994","1996","1997","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1993","1994","1995","1996","1998","1999","2000","2001","2002","2003","2008","1981","1983","1984","1985","1986","1987","1988","1989","1990","1992","1993","1994","1995","1981","1982","1984","1986","1987","1988","1989","1990","1991","1992","1993","1994","1996","1999","2000","2006","2008","2009","2010","2004","2007","2008","2009","2010","2001","2003","2007","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1995","1996","1999","2000","2001","2002","2004","2005","2006","2007","2008","2009","2010","1983","1985","2007","2008","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1994","2000","2001","2003","2005","2006","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1984","1985","1988","1989","1990","1991","1996","1997","1998","1999","2000","2001","2002","2008","2009","2010","1999","2001","2002","2003","2004","2005","2006","2007","2009","2010","2002","2003","2004","2005","2006","2008","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","2001","2003","2004","2007","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2006","2008","2009","2010","1999","2001","2002","2004","2005","2006","2008","2009","2010","2010","1998","2000","2001","2006","2007","2006","2008","2009","2010","2000","2002","2005","2006","2007","2009","2010","2010","2001","2004","2005","2006","2007","2008","2009","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2000","2002","2004","2001","2004","2007","1981","1984","1986","1987","1989","1991","1992","1996","1998","1999","2000","2002","2003","2004","2006","2008","2009","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006"],"y":[762,8480,5686,8326,9612,10480,10129,25,11823,7733,7651,11541,9557,9952,5545,1007,4982,13913,12968,10263,10832,685,1739,10739,11518,9957,10401,9388,15849,14692,432,5118,15042,12374,12927,8453,2421,142,9413,12785,445,8874,604,2665,10048,12927,4178,8372,394,4501,8926,10831,15473,15375,414,1533,11194,14477,14475,6685,10160,2626,779,714,10155,9837,199,11420,8203,10377,11768,9952,11736,10093,11270,11968,10093,18,8982,10555,9996,8909,10436,8317,9937,9121,15260,9899,6029,6512,7901,7293,3272,7324,7385,12348,7860,10868,7684,11430,11837,13002,12065,10698,12685,8949,9247,11326,9360,9647,6218,9354,9590,9227,8970,2044,10043,10483,12805,9346,13379,11769,12391,9192,8775,6882,11819,9417,9812,9594,9676,7731,10873,11870,11673,9749,11176,9557,9926,10170,10910,9263,11929,11593,11562,11411,8621,10201,12520,9481,12496,9689,9725,7207,9775,9147,11972,10732,8761,11984,9249,9309,9586,10128,14697,9340,10393,10510,13318,8727,11967,1495,1179,10889,12539,2686,11700,9579,6974,9128,8058,11736,10015,671,5808,12346,11876,10967,11550,10802,12022,9574,8232,10298,7388,9975,9820,11417,7708,9333,11452,8525,7815,9049,7847,7565,9516,7174,7534,9206,8935,8303,9190,7399,6786,7833,9920,7062,8992,7701,10189,7807,8502,7900,7879,6410,8875,8597,8467,9034,8801,8197,2417,10362,8488,10915,10136,11869,6475,9144,12638,12308,10939,8459,9104,12125,10705,14053,13710,8289,8080,8683,8404,7292,6875,6527,8319,9079,11936,10637,11120,9031,8303,2639,9477,9985,9252,9998,9968,9094,8824,10188,11784,9498,8690,1708,15137,12921,11942,13050,11151,12584,12942,13816,15905,12848,12348,9242,9445,12039,7678,9231,12066,10702,10383,9157,11857,8316,7715,6867,1264,11189,10498,12748,12589,10689,13586,11771,13615,6113,14567,14219,8753,2628,15396,14308,10769,9477,9027,11204,8993,10074,10897,8122,10041,8193,11924,9958,11042,9592,10473,7615,8478,7538,14450,14907,15980,16293,13232,13041,18875,14873,12511,12464,12421,16790,14511,7980,11491,10334,8322,15513,13247,12869,10087,11861,11706,9871,11552,12745,15886,12480,10294,12064,14172,11158,10996,13339,13580,15302,12319,4321,9902,7447,10067,6694,10216,12988,10949,9556,13108,11145,10187,11610,13883,10064,10495,10954,10567,13643,11233,10043,9127,13660,5098,8493,7776,9024,2167,2888,13845,15854,15044,13245,14139,14878,13300,13018,11459,9102,7680,6138,8389,8290,9998,6831,1824,14011,13090,11829,11363,11339,12588,2815,12546,12586,14075,11236,11658,12903,10057,8210,7716,8647,8700,5502,8430,9702,9742,7371,7821,5747,11390,7229,8684,7597,8604,7449,8728,10588,9683,9639,10431,4423,9127,8196,10061,7762,9500,9104,8591,9713,11416,7485,10391,13105,8073,8247,8394,10275,8294,10309,9650,9774,9774,10374,6545,10201,1566,12727,13590,14630,12695,10035,7997,8351,8318,7709,7555,8412,10750,10324,9131,12191,12788,11461,10016,9628,11123,11142,14164,3722,7897,8123,9641,11118,9341,8141,7409,8812,9816,6029,9279,7162,8839,7723,9283,7672,8191,9351,11025,8471,10080,8029,9163,7653,9998,12219,10502,10722,13485,10772,7526,3713,11839,9459,1481,8831,10080,9605,3465,12314,11358,9444,8811,7529,9473,10003,9799,10712,12058,9668,9035,11319,9243,5634,3041,9684,8433,7759,14273,8997,11487,10752,11550,10719,11376,11720,11915,12172,12218,13670,12347,10413,12085,13397,10395,13961,10685,10367,13689,12987,10989,11617,14950,12523,15031,12082,9676,9056,10506,9746,13227,7386,2352,9754,10253,10868,8847,10950,12360,10504,9966,11876,8097,11856,11038,10724,10166,10783,5336,10629,9875,15144,12070,12234,10650,11689,14845,12756,10773,13085,9817,11380,11666,11378,10908,14613,14194,15170,9753,9770,9463,9453,10806,9237,8329,10773,13332,10017,11304,10685,10633,9295,13489,9702,11077,13877,8012,13076,8995,10604,13737,10565,9272,10138,10579,8751,9371,10706,10749,12436,7886,2379,11015,6801,10551,9923,11010,9077,11332,8309,9216,8003,9147,7175,9342,10394,11739,11559,8539,8215,8821,10347,4620,5465,10426,8231,9429,9984,7867,10261,8493,8397,10332,11388,8476,10558,10517,10870,8712,12194,9021,9211,10419,6652,10864,9824,8359,8748,10540,8298,7712,7503,10048,7314,8408,2633,8556,7286,9066,8298,6686,7825,8431,9492,10656,11298,13051,11833,9558,9614,11230,9201,10412,11481,9367,12328,11296,9615,13202,9192,10118,9328,12525,8079,11848,11661,13301,12209,11773,11713,11086,8514,9961,1760,5289,11913,15357,5948,11145,18624,15631,11298,12575,13002,11369,14693,15374,11543,12119,10379,10302,16301,10918,14456,12744,10978,13030,9930,14487,13084,15063,13792,14346,13710,11997,10389,13900,12405,7847,9611,13068,10145,8177,7128,9471,9293,156,8961,5778,4971,9343,7583,1757,9519,9271,11366,8111,6577,6982,7696,8828,7545,9798,6958,9323,8563,9121,10130,7271,9333,9210,10078,7698,9321,8167,10855,9228,10232,15510,13074,11359,12610,11857,9719,13314,9717,10625,11141,12955,10510,15299,9548,12049,10822,6242,8478,10755,6406,9872,6882,7677,8017,7535,10892,7793,7441,10031,6256,7648,11307,7060,9310,9676,6838,9175,11817,11472,11115,8254,9463,8096,2696,10784,12057,11260,9347,11246,12735,8633,10660,9854,8794,13037,11643,11274,11590,9894,6097,10186,9596,13773,10581,9466,8629,11611,11218,10813,9209,10968,8853,12256,9432,10988,8156,12359,12201,9903,8918,10896,8143,12512,12084,11912,10866,13197,10785,12010,11969,11469,10116,8628,9752,8755,9928,9776,10045,7507,9472,10528,9657,7558,9397,9992,7715,11035,8807,12085,7859,577,7984,9650,8082,9740,10937,11848,10084,10049,10351,11177,10054,9683,10042,10370,11994,8451,10951,13385,8682,12669,9481,13768,11036,10137,9993,11156,8395,13466,11865,14105,12416,11898,11644,2862,8469,9638,14046,10912,8454,10165,14530,8980,12710,10254,11982,13132,10314,15219,10449,10196,12609,8077,13807,11181,7195,14141,11213,13012,14494,10378,7442,7097,6490,7716,8095,8789,10398,8591,10627,6832,8507,8025,8696,7549,8082,9393,9637,9561,10064,9555,9131,14511,11823,10599,10550,9455,11172,10953,9673,14808,12572,7587,12061,10725,11687,15226,9711,11023,10738,12465,9273,13409,10805,10540,9715,12879,7833,13446,13785,9934,14484,11809,10981,12376,10284,10292,10038,6748,6249,9021,9952,7351,9003,9801,7873,8108,10809,10104,6074,10211,9837,9358,10656,7586,8879,10031,10409,12626,9917,9034,11775,7940,7520,6820,12619,11147,12346,11162,14358,10645,10935,14785,12895,11513,14213,10412,12073,11643,11582,9812,11777,10467,8785,10787,11564,11244,10726,6601,7825,3725,8689,11990,2016,8986,8599,8657,9777,16498,12847,9986,12333,15784,11161,10565,8535,4938,9644,8286,8766,10734,8913,7760,8385,6025,6850,5919,11139,2573,7738,6016,8955,6236,9361,9354,7198,9068,10809,10498,6567,9081,8420,10262,8502,8971,8151,8686,6665,8322,9845,10782,9968,10548,9262,9538,8668,11004,13127,12495,12793,14289,14061,16193,12704,14408,13774,16233,14591,12992,12622,15655,13399,11647,12930,13551,12901,15078,15877,14052,16091,15182,14765,17255,13517,12077,11410,10974,7750,9948,16280,15770,15838,9509,7154,7854,14433,14762,14041,13078,12292,15436,13267,14233,14535,14848,13725,17499,13797,12192,10638,14251,12070,13956,15468,10629,12184,11803,11634,10222,13631,11114,11839,9236,7983,8365,10951,9162,6790,9294,10941,7638,8072,9373,7113,10730,9152,9554,8919,9939,7594,10122,11380,10915,9464,10765,8699,8934,8539,10049,9143,8919,12457,8711,13706,12824,7457,10200,14284,10907,11193,14078,11762,10683,9568,9581,9236,9610,11330,11005,10152,11199,8924,10437,9170,12205,8772,9847,10968,9792,11692,12878,11427,13340,10910,11844,9932,9063,10125,8024,8341,9433,11122,7851,9583,8838,5443,12141,6529,8680,7570,9694,8820,9997,11292,11513,10212,10426,9718,8495,9814,12196,11531,10190,7761,10521,12655,11544,8245,9762,8090,10034,8955,9482,1746,11409,8711,10628,9262,8754,7661,12307,9816,9687,8868,9726,12743,9679,11605,10146,10972,10223,10227,11152,11460,11869,11827,10888,9749,10247,8754,10138,8758,11593,6972,8080,8620,9962,7831,8994,9843,8151,10052,11108,11294,1391,11778,10609,14145,12803,11426,14094,13233,10535,7757,9899,9648,13877,7981,8119,8172,10547,7342,7223,8522,8382,9422,5837,8917,10316,7695,11434,6610,8417,8089,7532,6221,6806,9024,9300,8811,10244,7593,9162,9565,11010,13850,11662,12445,11282,14995,13839,11637,9273,9483,11158,8057,10288,9483,7932,12115,9239,11284,10252,11877,8876,12235,10224,10114,8993,10275,8986,11198,11126,11168,11637,11761,10330,10824,11361,8111,21378,8856,10298,10764,10012,6612,9367,11294,8231,10867,9197,8706,9217,9222,6679,8929,10860,10776,9789,8075,9559,9536,11176,9415,9882,9909,8759,10936,12344,9968,10825,10018,10254,8864,11748,9809,10040,9628,11343,9820,10651,10288,13249,11534,10583,13451,9943,10671,10688,10444,9476,555,6594,10385,7726,9141,11361,7785,8503,8841,11172,8571,9085,9287,10767,8932,11377,11209,8243,10511,10873,9115,11797,10620,11714,10342,8515,11180,8603,6221,8803,9353,8003,9426,9999,8988,6777,10119,8659,10199,12126,9702,8635,10279,10260,8531,13803,8916,10008,10528,14167,7945,13208,12221,12011,12485,12416,11228,10862,12449,11683,14659,13471,9696,10225,12195,9383,9697,10472,8862,10898,13403,9529,9249,9889,11688,8971,9627,10413,13168,14708,11062,588,9888,10121,11157,12985,10272,14356,9538,11983,11565,11858,10529,15967,6169,6938,7180,10683,8674,10935,1723,8487,9606,13642,12065,11649,10755,13245,9664,9844,11606,9583,13809,10430,9246,11799,6646,10859,13202,13775,13470,8583,11663,10737,10830,12272,11603,11833,11630,3666,10052,15389,12633,11976,11855,9928,11009,15859,12480,12510,14651,15958,11138,12610,12260,12640,12536,17482,11902,12069,12156,14087,9165,13183,15893,12762,16072,14523,13004,15277,15501,12336,11374,10229,8494,8738,15534,6828,6578,8418,7812,8887,7849,7381,9096,835,8656,7690,12993,11162,11021,11904,10688,8398,11547,9024,10566,6671,8739,9647,11424,11319,12994,12402,4437,6694,7844,8197,8612,10614,10187,11883,10347,11342,10600,10351,9014,10997,9314,9689,9796,10209,8872,13871,9589,8983,11145,9661,9272,8499,9162,9138,8713,16515,13834,8919,10393,9888,9846,14875,11225,10541,10607,9777,11556,10008,14405,11531,10962,10491,10691,10082,10981,14219,12204,12766,12892,5308,9579,17655,10022,16780,10121,11909,8783,7326,1815,9702,8526,9066,8282,7066,8039,9242,7896,8148,9241,9155,9834,6674,9267,9621,8783,9871,10571,7494,8592,10926,7922,8542,10033,8041,8537,10035,9970,9895,10403,11702,6931,7897,11245,8228,13437,10269,9378,11632,10782,7857,10213,14098,9019,9817,8656,10442,8977,9116,10267,9009,12813,8365,10552,11749,11544,13475,10599,11694,11492,12878,1808,10242,10181,10634,10808,9141,8560,9135,11141,8688,11874,9438,9753,9627,11769,9707,8039,8975,10352,8866,10004,11418,10587,12512,8563,11583,10905,9609,12070,10699,13897,11193,9363,13134,11122,9569,12961,14245,10467,11496,10483,10807,10177,12632,11239,13190,7766,9616,8803,8510,11347,9887,9960,10550,8883,9508,10610,12558,9307,11119,10804,11468,8701,13559,8497,10109,9990,12010,13827,10671,3066,12589,11126,12073,8537,13172,14457,14059,11316,12752,12146,393,9320,8562,6322,7214,9995,9759,9977,8008,8074,11606,12904,13083,13068,13077,4454,12655,15871,11121,11816,9620,13135,11380,14453,12988,9693,9691,11176,8692,10165,7285,9956,13316,7922,10954,9956,10798,8032,12252,10542,10533,9514,7821,10998,12415,11382,9882,10961,9806,10755,9772,9755,11771,7637,5732,10162,8957,10453,10091,10732,9219,10443,10213,12660,11157,13896,10229,8992,10434,12761,10299,9978,9691,11052,8448,10818,11677,10799,11298,11263,10389,14231,9653,12294,8668,8587,9426,10440,9953,7815,9508,10790,7379,10876,11786,8974,8179,9910,8081,10487,11420,10423,8992,9633,9168,351,10557,16805,15945,10192,11888,10374,10709,17533,15111,13057,10668,11166,10252,15688,8110,8781,9450,10171,10864,9840,8959,7429,10044,10009,8043,8429,1252,14351,13770,15047,15787,12322,7959,12558,11038,11185,12718,15562,1167,14281,12262,18615,15639,13721,13334,13666,9789,13773,9854,12829,14050,12441,6002,3079,17181,17387,15833,21854,7953,10531,6423,6938,9726,6481,7156,13191,9241,13535,14309,11580,9561,14557,9683,10052,9830,7828,9516,7815,8847,6918,7816,8300,10122,9812,10024,8801,8931,6726,9381,9358,9902,10435,11825,8707,10286,9579,9846,10170,14754,12381,11659,11682,10654,10062,12430,12453,8899,10764,11469,13577,9690,15922,10060,11697,10517,12228,11815,11625,9374,8683,9264,7459,8486,151,7750,30410,10839,11635,9387,8986,8512,9040,9959,9506,10506,10759,9737,11718,16123,13697,9273,11170,11343,15818,12706,11212,11453,11577,10794,9577,14597,9746,10896,12340,11834,11810,14610,11273,13447,13302,10574,13494,13066,11788,9290,9438,10921,9146,11040,8044,10937,10596,12922,10542,13057,13462,10418,12150,13308,11574,16431,10419,12867,11877,12884,13256,16089,14846,11187,12191,11644,12321,10747,10464,9167,9020,8276,11058,11543,7942,10598,6696,11535,8592,11384,11497,10549,11964,11115,5710,12270,12835,10352,12462,9710,12966,12989,11088,10016,8781,7742,11760,7836,13705,9507,11431,11609,9206,13198,10352,11607,13388,13404,7045,2114,9855,8600,8308,3111,9560,12346,12576,9752,13470,14619,9635,10699,10206,14564,13602,9889,10894,7996,14561,6347,8466,10586,9415,8894,9857,7943,8447,9842,11324,8993,10895,10751,7374,11432,7120,9659,8936,7811,10610,13293,11706,9841,9856,8760,9926,10982,14773,11333,11796,11052,9708,15691,14143,10883,10176,12050,12119,16096,12245,10880,14673,9876,15432,12203,18026,11875,11861,17078,7723,16256,16485,5054,9497,8969,12602,11921,11569,14036,13793,14448,10107,10243,11305,14713,10062,13365,12035,12741,14786,14113,11980,11213,12042,9853,13385,7896,10467,8305,9578,9350,12150,9843,10954,13121,10258,12929,10972,9485,9268,3548,1843,4644,481,12497,15514,14978,15376,14649,5311,9159,4043,7520,7556,6140,7961,7093,7937,1780,9513,7607,8698,9529,11356,8611,8062,9326,9248,12350,8166,9275,10589,9069,10521,10723,6009,10375,8377,11077,12446,10535,11773,7911,10881,7181,5941,9708,7578,1143,8226,10926,9992,10086,10264,8215,9504,5996,9002,9972,10491,8695,13574,9933,10690,11647,13834,7538,11387,13370,9395,12531,11898,12576,12598,12630,13471,11286,10167,13369,14419,12483,12655,10988,11721,11916,14086,11696,14418,11644,14328,8006,11360,12619,11103,11027,17819,10926,11299,13168,11545,9075,11746,14948,11294,14865,12986,7291,1009,7266,11317,11330,11798,12601,11988,16247,14358,10737,676,5218,8763,13375,13284,11946,16273,9643,11286,13562,14504,11556,11659,1878,4500,15190,8774,9133,6658,8818,7759,6563,8804,10899,6999,9755,8251,10449,7262,10906,7950,8916,8123,7707,9572,10496,9626,10743,9639,11207,8490,8904,9725,12478,9361,13133,13075,8318,11710,8908,9766,12070,13342,9701,12724,12787,9758,14619,10461,11759,9662,9727,13447,13567,14387,9657,11498,12928,12664,10768,7704,11486,9593,13514,8965,13082,12339,10234,8611,5551,6522,11422,11282,9508,9277,11356,11927,9658,11397,8857,8319,7492,12515,8393,11414,10991,7499,10132,9751,10749,9114,3586,3421,12634,8414,9327,10606,13266,7406,9559,12136,12384,11757,12138,11299,9895,9943,8730,11029,9533,8841,10726,12797,12641,10651,10465,10671,11577,9489,13677,9417,9700,10010,13364,7688,11971,11203,14026,10435,11226,10979,12466,9722,10361,9173,12750,10967,10327,11573,11426,10165,11748,13226,10555,10472,11954,12164,11443,10431,13130,10362,5578,13732,10987,9702,8649,9773,8041,10565,11479,11157,3844,10247,12465,9833,10572,12060,11007,11042,13166,8331,8244,2617,10181,10441,11133,11495,9520,8881,10030,11848,9547,9838,10255,10096,10173,10067,13274,9434,10583,13491,10619,12986,11095,14484,11382,565,8202,7154,9085,7494,9474,7491,9601,9224,10414,2882,7763,1798,8521,5803,9635,9158,7495,9513,6801,9287,9220,9540,7128,12275,10737,11667,9986,10280,9250,11539,7354,6251,7187,9591,8097,9142,10313,6882,8377,10112,10611,9552,10330,10855,16856,15182,10550,11283,11189,12223,17691,7666,11357,11937,11622,12536,13438,14235,10564,10419,10720,13474,9069,12102,11689,10167,9315,14017,9263,8434,9685,9443,11582,1643,10028,9647,13275,10848,9168,13692,15182,11663,12130,10839,14422,10046,14156,11400,9446,10851,17652,11423,12227,13707,10324,11519,14465,9712,11719,13345,8648,11837,16665,14741,9110,8807,12953,11250,8442,10658,9825,11084,13170,10577,10397,9759,14778,10111,11265,13758,12568,14417,14076,13056,9248,11792,4108,8664,8999,9801,10525,10947,11333,877,10529,7407,9114,9135,9967,9468,9354,13208,9352,11498,9858,12035,10549,12946,9592,13022,10708,14939,10653,9543,12047,8557,9815,9868,7512,9854,11605,6714,10045,9251,10309,8279,11581,9512,8804,7927,12100,9343,10433,9511,9110,8498,9648,8896,8675,9474,7089,9207,9155,9599,11312,8878,9410,7621,10487,6540,9180,3948,7041,8901,6925,10259,8459,6063,2176,7827,7815,8716,8605,649,10034,7700,13212,10561,8402,10199,13144,8286,9943,5272,8229,10598,9872,9626,16607,12107,11602,11951,8257,11254,14381,9708,8780,7543,9618,8011,8564,8237,8816,9664,10809,8640,6012,5260,190,10090,11159,14871,11758,12352,10571,14039,15353,11348,11395,11788,15324,17233,14526,11609,14771,14415,13166,13039,7093,7008,9805,9476,8129,2974,7678,7504,9386,8863,7698,8918,10818,10086,8501,11302,8795,8533,9852,11687,8488,10431,10772,10705,8445,12461,8005,9979,8292,11359,8714,10696,11052,11080,10531,12655,10362,10061,9303,9733,9583,10571,14527,13582,8745,9602,9434,10118,16596,16137,10425,11971,9570,9993,15041,12037,11499,9092,10992,9959,10434,13576,10894,13265,13390,10948,10367,1970,10761,11939,10697,10270,12538,10859,10963,13675,9914,9733,12265,11969,10929,12782,11386,8488,9124,14050,12781,13059,8691,8477,15450,12884,9310,9875,11252,10262,14031,13017,9694,9508,10967,11052,8971,12483,11533,11489,10439,10799,8636,11399,13967,12882,12242,13711,13577,12164,11781,10324,9271,10454,10043,9510,11688,10083,10724,9815,10459,12929,10222,12093,10340,9333,8650,12244,10448,8820,8665,10734,8945,10106,9450,10611,9929,11289,8935,12026,11266,9338,7736,8154,11762,9437,7618,11167,9984,7516,10082,11691,9075,7982,10484,8835,8660,11666,8830,9902,9825,11930,7268,10512,11772,10170,12131,11842,11498,12142,10478,9620,8823,9141,8983,9132,8362,10663,8393,11080,9743,9622,9143,11322,7451,8984,9793,9257,9116,7134,7167,9379,8801,10332,8080,10242,7228,10035,7771,8613,9229,10801,9505,9897,8423,9004,8515,13819,9949,7596,11038,10383,8140,10091,12255,8169,9060,8457,7878,10897,9646,9879,8512,10256,7303,10423,9860,8900,11398,12505,9765,12406,10184,9399,8956,10112,14080,10612,10057,10909,10288,9475,12756,12498,10509,7003,11934,10727,11445,8899,8097,8948,8555,7638,9227,8671,6270,8303,10196,7439,9224,7410,7516,7632,11463,8821,10669,8429,9615,7418,8743,8063,9618,9016,10440,8253,8445,8535,9524,8947,8937,9232,9659,8260,10917,8569,8755,9394,12575,9419,11092,11027,7976,10015,8296,9425,7856,9404,8721,10245,9560,10967,10197,11996,10574,10648,8993,10947,9634,8748,10353,9667,8803,9425,10363,11060,12177,11396,9095,10417,8015,744,9795,8289,13353,10920,11502,12165,10016,7828,10512,11708,11984,12640,9945,13016,9947,9413,5634,8588,8181,9470,6642,7276,6376,8653,8335,8958,6161,8612,10155,7763,8683,9912,10720,8923,9640,12037,9225,9420,9586,8525,8766,8380,6766,8194,9540,8269,9693,8283,8270,7000,7877,9191,9683,10518,20464,14497,9866,10919,11801,11354,16541,15478,11479,11015,11249,12037,10271,14281,11174,12374,10550,11549,9059,11493,14847,13192,14221,15215,15679,13624,13624,12547,7719,8525,8027,7621,8510,9167,10876,15571,10824,11624,14953,11387,12598,15709,11127,11937,12162,13618,13438,14211,14763,11315,6883,8791,8658,15017,13520,8388,10289,9932,10333,14158,11497,9838,9752,9055,11016,8753,13079,10130,9546,10194,10428,8317,10964,11377,12952,12589,11385,11919,11761,11664,10793,9680,9121,6793,7867,10164,8826,7927,8422,7896,9063,8048,10788,9703,8853,8834,9444,9358,9403,10545,11086,7127,7554,9342,9364,10607,9745,7879,11650,8659,9476,10665,9406,10628,12265,9670,12329,9719,9134,11560,13772,9842,10384,12308,11573,12008,9995,9211,9653,13323,9680,12357,11555,12488,9947,11301],"jitter":0.29999999999999999,"pointpos":-1.8,"text":[762,8480,5686,8326,9612,10480,10129,25,11823,7733,7651,11541,9557,9952,5545,1007,4982,13913,12968,10263,10832,685,1739,10739,11518,9957,10401,9388,15849,14692,432,5118,15042,12374,12927,8453,2421,142,9413,12785,445,8874,604,2665,10048,12927,4178,8372,394,4501,8926,10831,15473,15375,414,1533,11194,14477,14475,6685,10160,2626,779,714,10155,9837,199,11420,8203,10377,11768,9952,11736,10093,11270,11968,10093,18,8982,10555,9996,8909,10436,8317,9937,9121,15260,9899,6029,6512,7901,7293,3272,7324,7385,12348,7860,10868,7684,11430,11837,13002,12065,10698,12685,8949,9247,11326,9360,9647,6218,9354,9590,9227,8970,2044,10043,10483,12805,9346,13379,11769,12391,9192,8775,6882,11819,9417,9812,9594,9676,7731,10873,11870,11673,9749,11176,9557,9926,10170,10910,9263,11929,11593,11562,11411,8621,10201,12520,9481,12496,9689,9725,7207,9775,9147,11972,10732,8761,11984,9249,9309,9586,10128,14697,9340,10393,10510,13318,8727,11967,1495,1179,10889,12539,2686,11700,9579,6974,9128,8058,11736,10015,671,5808,12346,11876,10967,11550,10802,12022,9574,8232,10298,7388,9975,9820,11417,7708,9333,11452,8525,7815,9049,7847,7565,9516,7174,7534,9206,8935,8303,9190,7399,6786,7833,9920,7062,8992,7701,10189,7807,8502,7900,7879,6410,8875,8597,8467,9034,8801,8197,2417,10362,8488,10915,10136,11869,6475,9144,12638,12308,10939,8459,9104,12125,10705,14053,13710,8289,8080,8683,8404,7292,6875,6527,8319,9079,11936,10637,11120,9031,8303,2639,9477,9985,9252,9998,9968,9094,8824,10188,11784,9498,8690,1708,15137,12921,11942,13050,11151,12584,12942,13816,15905,12848,12348,9242,9445,12039,7678,9231,12066,10702,10383,9157,11857,8316,7715,6867,1264,11189,10498,12748,12589,10689,13586,11771,13615,6113,14567,14219,8753,2628,15396,14308,10769,9477,9027,11204,8993,10074,10897,8122,10041,8193,11924,9958,11042,9592,10473,7615,8478,7538,14450,14907,15980,16293,13232,13041,18875,14873,12511,12464,12421,16790,14511,7980,11491,10334,8322,15513,13247,12869,10087,11861,11706,9871,11552,12745,15886,12480,10294,12064,14172,11158,10996,13339,13580,15302,12319,4321,9902,7447,10067,6694,10216,12988,10949,9556,13108,11145,10187,11610,13883,10064,10495,10954,10567,13643,11233,10043,9127,13660,5098,8493,7776,9024,2167,2888,13845,15854,15044,13245,14139,14878,13300,13018,11459,9102,7680,6138,8389,8290,9998,6831,1824,14011,13090,11829,11363,11339,12588,2815,12546,12586,14075,11236,11658,12903,10057,8210,7716,8647,8700,5502,8430,9702,9742,7371,7821,5747,11390,7229,8684,7597,8604,7449,8728,10588,9683,9639,10431,4423,9127,8196,10061,7762,9500,9104,8591,9713,11416,7485,10391,13105,8073,8247,8394,10275,8294,10309,9650,9774,9774,10374,6545,10201,1566,12727,13590,14630,12695,10035,7997,8351,8318,7709,7555,8412,10750,10324,9131,12191,12788,11461,10016,9628,11123,11142,14164,3722,7897,8123,9641,11118,9341,8141,7409,8812,9816,6029,9279,7162,8839,7723,9283,7672,8191,9351,11025,8471,10080,8029,9163,7653,9998,12219,10502,10722,13485,10772,7526,3713,11839,9459,1481,8831,10080,9605,3465,12314,11358,9444,8811,7529,9473,10003,9799,10712,12058,9668,9035,11319,9243,5634,3041,9684,8433,7759,14273,8997,11487,10752,11550,10719,11376,11720,11915,12172,12218,13670,12347,10413,12085,13397,10395,13961,10685,10367,13689,12987,10989,11617,14950,12523,15031,12082,9676,9056,10506,9746,13227,7386,2352,9754,10253,10868,8847,10950,12360,10504,9966,11876,8097,11856,11038,10724,10166,10783,5336,10629,9875,15144,12070,12234,10650,11689,14845,12756,10773,13085,9817,11380,11666,11378,10908,14613,14194,15170,9753,9770,9463,9453,10806,9237,8329,10773,13332,10017,11304,10685,10633,9295,13489,9702,11077,13877,8012,13076,8995,10604,13737,10565,9272,10138,10579,8751,9371,10706,10749,12436,7886,2379,11015,6801,10551,9923,11010,9077,11332,8309,9216,8003,9147,7175,9342,10394,11739,11559,8539,8215,8821,10347,4620,5465,10426,8231,9429,9984,7867,10261,8493,8397,10332,11388,8476,10558,10517,10870,8712,12194,9021,9211,10419,6652,10864,9824,8359,8748,10540,8298,7712,7503,10048,7314,8408,2633,8556,7286,9066,8298,6686,7825,8431,9492,10656,11298,13051,11833,9558,9614,11230,9201,10412,11481,9367,12328,11296,9615,13202,9192,10118,9328,12525,8079,11848,11661,13301,12209,11773,11713,11086,8514,9961,1760,5289,11913,15357,5948,11145,18624,15631,11298,12575,13002,11369,14693,15374,11543,12119,10379,10302,16301,10918,14456,12744,10978,13030,9930,14487,13084,15063,13792,14346,13710,11997,10389,13900,12405,7847,9611,13068,10145,8177,7128,9471,9293,156,8961,5778,4971,9343,7583,1757,9519,9271,11366,8111,6577,6982,7696,8828,7545,9798,6958,9323,8563,9121,10130,7271,9333,9210,10078,7698,9321,8167,10855,9228,10232,15510,13074,11359,12610,11857,9719,13314,9717,10625,11141,12955,10510,15299,9548,12049,10822,6242,8478,10755,6406,9872,6882,7677,8017,7535,10892,7793,7441,10031,6256,7648,11307,7060,9310,9676,6838,9175,11817,11472,11115,8254,9463,8096,2696,10784,12057,11260,9347,11246,12735,8633,10660,9854,8794,13037,11643,11274,11590,9894,6097,10186,9596,13773,10581,9466,8629,11611,11218,10813,9209,10968,8853,12256,9432,10988,8156,12359,12201,9903,8918,10896,8143,12512,12084,11912,10866,13197,10785,12010,11969,11469,10116,8628,9752,8755,9928,9776,10045,7507,9472,10528,9657,7558,9397,9992,7715,11035,8807,12085,7859,577,7984,9650,8082,9740,10937,11848,10084,10049,10351,11177,10054,9683,10042,10370,11994,8451,10951,13385,8682,12669,9481,13768,11036,10137,9993,11156,8395,13466,11865,14105,12416,11898,11644,2862,8469,9638,14046,10912,8454,10165,14530,8980,12710,10254,11982,13132,10314,15219,10449,10196,12609,8077,13807,11181,7195,14141,11213,13012,14494,10378,7442,7097,6490,7716,8095,8789,10398,8591,10627,6832,8507,8025,8696,7549,8082,9393,9637,9561,10064,9555,9131,14511,11823,10599,10550,9455,11172,10953,9673,14808,12572,7587,12061,10725,11687,15226,9711,11023,10738,12465,9273,13409,10805,10540,9715,12879,7833,13446,13785,9934,14484,11809,10981,12376,10284,10292,10038,6748,6249,9021,9952,7351,9003,9801,7873,8108,10809,10104,6074,10211,9837,9358,10656,7586,8879,10031,10409,12626,9917,9034,11775,7940,7520,6820,12619,11147,12346,11162,14358,10645,10935,14785,12895,11513,14213,10412,12073,11643,11582,9812,11777,10467,8785,10787,11564,11244,10726,6601,7825,3725,8689,11990,2016,8986,8599,8657,9777,16498,12847,9986,12333,15784,11161,10565,8535,4938,9644,8286,8766,10734,8913,7760,8385,6025,6850,5919,11139,2573,7738,6016,8955,6236,9361,9354,7198,9068,10809,10498,6567,9081,8420,10262,8502,8971,8151,8686,6665,8322,9845,10782,9968,10548,9262,9538,8668,11004,13127,12495,12793,14289,14061,16193,12704,14408,13774,16233,14591,12992,12622,15655,13399,11647,12930,13551,12901,15078,15877,14052,16091,15182,14765,17255,13517,12077,11410,10974,7750,9948,16280,15770,15838,9509,7154,7854,14433,14762,14041,13078,12292,15436,13267,14233,14535,14848,13725,17499,13797,12192,10638,14251,12070,13956,15468,10629,12184,11803,11634,10222,13631,11114,11839,9236,7983,8365,10951,9162,6790,9294,10941,7638,8072,9373,7113,10730,9152,9554,8919,9939,7594,10122,11380,10915,9464,10765,8699,8934,8539,10049,9143,8919,12457,8711,13706,12824,7457,10200,14284,10907,11193,14078,11762,10683,9568,9581,9236,9610,11330,11005,10152,11199,8924,10437,9170,12205,8772,9847,10968,9792,11692,12878,11427,13340,10910,11844,9932,9063,10125,8024,8341,9433,11122,7851,9583,8838,5443,12141,6529,8680,7570,9694,8820,9997,11292,11513,10212,10426,9718,8495,9814,12196,11531,10190,7761,10521,12655,11544,8245,9762,8090,10034,8955,9482,1746,11409,8711,10628,9262,8754,7661,12307,9816,9687,8868,9726,12743,9679,11605,10146,10972,10223,10227,11152,11460,11869,11827,10888,9749,10247,8754,10138,8758,11593,6972,8080,8620,9962,7831,8994,9843,8151,10052,11108,11294,1391,11778,10609,14145,12803,11426,14094,13233,10535,7757,9899,9648,13877,7981,8119,8172,10547,7342,7223,8522,8382,9422,5837,8917,10316,7695,11434,6610,8417,8089,7532,6221,6806,9024,9300,8811,10244,7593,9162,9565,11010,13850,11662,12445,11282,14995,13839,11637,9273,9483,11158,8057,10288,9483,7932,12115,9239,11284,10252,11877,8876,12235,10224,10114,8993,10275,8986,11198,11126,11168,11637,11761,10330,10824,11361,8111,21378,8856,10298,10764,10012,6612,9367,11294,8231,10867,9197,8706,9217,9222,6679,8929,10860,10776,9789,8075,9559,9536,11176,9415,9882,9909,8759,10936,12344,9968,10825,10018,10254,8864,11748,9809,10040,9628,11343,9820,10651,10288,13249,11534,10583,13451,9943,10671,10688,10444,9476,555,6594,10385,7726,9141,11361,7785,8503,8841,11172,8571,9085,9287,10767,8932,11377,11209,8243,10511,10873,9115,11797,10620,11714,10342,8515,11180,8603,6221,8803,9353,8003,9426,9999,8988,6777,10119,8659,10199,12126,9702,8635,10279,10260,8531,13803,8916,10008,10528,14167,7945,13208,12221,12011,12485,12416,11228,10862,12449,11683,14659,13471,9696,10225,12195,9383,9697,10472,8862,10898,13403,9529,9249,9889,11688,8971,9627,10413,13168,14708,11062,588,9888,10121,11157,12985,10272,14356,9538,11983,11565,11858,10529,15967,6169,6938,7180,10683,8674,10935,1723,8487,9606,13642,12065,11649,10755,13245,9664,9844,11606,9583,13809,10430,9246,11799,6646,10859,13202,13775,13470,8583,11663,10737,10830,12272,11603,11833,11630,3666,10052,15389,12633,11976,11855,9928,11009,15859,12480,12510,14651,15958,11138,12610,12260,12640,12536,17482,11902,12069,12156,14087,9165,13183,15893,12762,16072,14523,13004,15277,15501,12336,11374,10229,8494,8738,15534,6828,6578,8418,7812,8887,7849,7381,9096,835,8656,7690,12993,11162,11021,11904,10688,8398,11547,9024,10566,6671,8739,9647,11424,11319,12994,12402,4437,6694,7844,8197,8612,10614,10187,11883,10347,11342,10600,10351,9014,10997,9314,9689,9796,10209,8872,13871,9589,8983,11145,9661,9272,8499,9162,9138,8713,16515,13834,8919,10393,9888,9846,14875,11225,10541,10607,9777,11556,10008,14405,11531,10962,10491,10691,10082,10981,14219,12204,12766,12892,5308,9579,17655,10022,16780,10121,11909,8783,7326,1815,9702,8526,9066,8282,7066,8039,9242,7896,8148,9241,9155,9834,6674,9267,9621,8783,9871,10571,7494,8592,10926,7922,8542,10033,8041,8537,10035,9970,9895,10403,11702,6931,7897,11245,8228,13437,10269,9378,11632,10782,7857,10213,14098,9019,9817,8656,10442,8977,9116,10267,9009,12813,8365,10552,11749,11544,13475,10599,11694,11492,12878,1808,10242,10181,10634,10808,9141,8560,9135,11141,8688,11874,9438,9753,9627,11769,9707,8039,8975,10352,8866,10004,11418,10587,12512,8563,11583,10905,9609,12070,10699,13897,11193,9363,13134,11122,9569,12961,14245,10467,11496,10483,10807,10177,12632,11239,13190,7766,9616,8803,8510,11347,9887,9960,10550,8883,9508,10610,12558,9307,11119,10804,11468,8701,13559,8497,10109,9990,12010,13827,10671,3066,12589,11126,12073,8537,13172,14457,14059,11316,12752,12146,393,9320,8562,6322,7214,9995,9759,9977,8008,8074,11606,12904,13083,13068,13077,4454,12655,15871,11121,11816,9620,13135,11380,14453,12988,9693,9691,11176,8692,10165,7285,9956,13316,7922,10954,9956,10798,8032,12252,10542,10533,9514,7821,10998,12415,11382,9882,10961,9806,10755,9772,9755,11771,7637,5732,10162,8957,10453,10091,10732,9219,10443,10213,12660,11157,13896,10229,8992,10434,12761,10299,9978,9691,11052,8448,10818,11677,10799,11298,11263,10389,14231,9653,12294,8668,8587,9426,10440,9953,7815,9508,10790,7379,10876,11786,8974,8179,9910,8081,10487,11420,10423,8992,9633,9168,351,10557,16805,15945,10192,11888,10374,10709,17533,15111,13057,10668,11166,10252,15688,8110,8781,9450,10171,10864,9840,8959,7429,10044,10009,8043,8429,1252,14351,13770,15047,15787,12322,7959,12558,11038,11185,12718,15562,1167,14281,12262,18615,15639,13721,13334,13666,9789,13773,9854,12829,14050,12441,6002,3079,17181,17387,15833,21854,7953,10531,6423,6938,9726,6481,7156,13191,9241,13535,14309,11580,9561,14557,9683,10052,9830,7828,9516,7815,8847,6918,7816,8300,10122,9812,10024,8801,8931,6726,9381,9358,9902,10435,11825,8707,10286,9579,9846,10170,14754,12381,11659,11682,10654,10062,12430,12453,8899,10764,11469,13577,9690,15922,10060,11697,10517,12228,11815,11625,9374,8683,9264,7459,8486,151,7750,30410,10839,11635,9387,8986,8512,9040,9959,9506,10506,10759,9737,11718,16123,13697,9273,11170,11343,15818,12706,11212,11453,11577,10794,9577,14597,9746,10896,12340,11834,11810,14610,11273,13447,13302,10574,13494,13066,11788,9290,9438,10921,9146,11040,8044,10937,10596,12922,10542,13057,13462,10418,12150,13308,11574,16431,10419,12867,11877,12884,13256,16089,14846,11187,12191,11644,12321,10747,10464,9167,9020,8276,11058,11543,7942,10598,6696,11535,8592,11384,11497,10549,11964,11115,5710,12270,12835,10352,12462,9710,12966,12989,11088,10016,8781,7742,11760,7836,13705,9507,11431,11609,9206,13198,10352,11607,13388,13404,7045,2114,9855,8600,8308,3111,9560,12346,12576,9752,13470,14619,9635,10699,10206,14564,13602,9889,10894,7996,14561,6347,8466,10586,9415,8894,9857,7943,8447,9842,11324,8993,10895,10751,7374,11432,7120,9659,8936,7811,10610,13293,11706,9841,9856,8760,9926,10982,14773,11333,11796,11052,9708,15691,14143,10883,10176,12050,12119,16096,12245,10880,14673,9876,15432,12203,18026,11875,11861,17078,7723,16256,16485,5054,9497,8969,12602,11921,11569,14036,13793,14448,10107,10243,11305,14713,10062,13365,12035,12741,14786,14113,11980,11213,12042,9853,13385,7896,10467,8305,9578,9350,12150,9843,10954,13121,10258,12929,10972,9485,9268,3548,1843,4644,481,12497,15514,14978,15376,14649,5311,9159,4043,7520,7556,6140,7961,7093,7937,1780,9513,7607,8698,9529,11356,8611,8062,9326,9248,12350,8166,9275,10589,9069,10521,10723,6009,10375,8377,11077,12446,10535,11773,7911,10881,7181,5941,9708,7578,1143,8226,10926,9992,10086,10264,8215,9504,5996,9002,9972,10491,8695,13574,9933,10690,11647,13834,7538,11387,13370,9395,12531,11898,12576,12598,12630,13471,11286,10167,13369,14419,12483,12655,10988,11721,11916,14086,11696,14418,11644,14328,8006,11360,12619,11103,11027,17819,10926,11299,13168,11545,9075,11746,14948,11294,14865,12986,7291,1009,7266,11317,11330,11798,12601,11988,16247,14358,10737,676,5218,8763,13375,13284,11946,16273,9643,11286,13562,14504,11556,11659,1878,4500,15190,8774,9133,6658,8818,7759,6563,8804,10899,6999,9755,8251,10449,7262,10906,7950,8916,8123,7707,9572,10496,9626,10743,9639,11207,8490,8904,9725,12478,9361,13133,13075,8318,11710,8908,9766,12070,13342,9701,12724,12787,9758,14619,10461,11759,9662,9727,13447,13567,14387,9657,11498,12928,12664,10768,7704,11486,9593,13514,8965,13082,12339,10234,8611,5551,6522,11422,11282,9508,9277,11356,11927,9658,11397,8857,8319,7492,12515,8393,11414,10991,7499,10132,9751,10749,9114,3586,3421,12634,8414,9327,10606,13266,7406,9559,12136,12384,11757,12138,11299,9895,9943,8730,11029,9533,8841,10726,12797,12641,10651,10465,10671,11577,9489,13677,9417,9700,10010,13364,7688,11971,11203,14026,10435,11226,10979,12466,9722,10361,9173,12750,10967,10327,11573,11426,10165,11748,13226,10555,10472,11954,12164,11443,10431,13130,10362,5578,13732,10987,9702,8649,9773,8041,10565,11479,11157,3844,10247,12465,9833,10572,12060,11007,11042,13166,8331,8244,2617,10181,10441,11133,11495,9520,8881,10030,11848,9547,9838,10255,10096,10173,10067,13274,9434,10583,13491,10619,12986,11095,14484,11382,565,8202,7154,9085,7494,9474,7491,9601,9224,10414,2882,7763,1798,8521,5803,9635,9158,7495,9513,6801,9287,9220,9540,7128,12275,10737,11667,9986,10280,9250,11539,7354,6251,7187,9591,8097,9142,10313,6882,8377,10112,10611,9552,10330,10855,16856,15182,10550,11283,11189,12223,17691,7666,11357,11937,11622,12536,13438,14235,10564,10419,10720,13474,9069,12102,11689,10167,9315,14017,9263,8434,9685,9443,11582,1643,10028,9647,13275,10848,9168,13692,15182,11663,12130,10839,14422,10046,14156,11400,9446,10851,17652,11423,12227,13707,10324,11519,14465,9712,11719,13345,8648,11837,16665,14741,9110,8807,12953,11250,8442,10658,9825,11084,13170,10577,10397,9759,14778,10111,11265,13758,12568,14417,14076,13056,9248,11792,4108,8664,8999,9801,10525,10947,11333,877,10529,7407,9114,9135,9967,9468,9354,13208,9352,11498,9858,12035,10549,12946,9592,13022,10708,14939,10653,9543,12047,8557,9815,9868,7512,9854,11605,6714,10045,9251,10309,8279,11581,9512,8804,7927,12100,9343,10433,9511,9110,8498,9648,8896,8675,9474,7089,9207,9155,9599,11312,8878,9410,7621,10487,6540,9180,3948,7041,8901,6925,10259,8459,6063,2176,7827,7815,8716,8605,649,10034,7700,13212,10561,8402,10199,13144,8286,9943,5272,8229,10598,9872,9626,16607,12107,11602,11951,8257,11254,14381,9708,8780,7543,9618,8011,8564,8237,8816,9664,10809,8640,6012,5260,190,10090,11159,14871,11758,12352,10571,14039,15353,11348,11395,11788,15324,17233,14526,11609,14771,14415,13166,13039,7093,7008,9805,9476,8129,2974,7678,7504,9386,8863,7698,8918,10818,10086,8501,11302,8795,8533,9852,11687,8488,10431,10772,10705,8445,12461,8005,9979,8292,11359,8714,10696,11052,11080,10531,12655,10362,10061,9303,9733,9583,10571,14527,13582,8745,9602,9434,10118,16596,16137,10425,11971,9570,9993,15041,12037,11499,9092,10992,9959,10434,13576,10894,13265,13390,10948,10367,1970,10761,11939,10697,10270,12538,10859,10963,13675,9914,9733,12265,11969,10929,12782,11386,8488,9124,14050,12781,13059,8691,8477,15450,12884,9310,9875,11252,10262,14031,13017,9694,9508,10967,11052,8971,12483,11533,11489,10439,10799,8636,11399,13967,12882,12242,13711,13577,12164,11781,10324,9271,10454,10043,9510,11688,10083,10724,9815,10459,12929,10222,12093,10340,9333,8650,12244,10448,8820,8665,10734,8945,10106,9450,10611,9929,11289,8935,12026,11266,9338,7736,8154,11762,9437,7618,11167,9984,7516,10082,11691,9075,7982,10484,8835,8660,11666,8830,9902,9825,11930,7268,10512,11772,10170,12131,11842,11498,12142,10478,9620,8823,9141,8983,9132,8362,10663,8393,11080,9743,9622,9143,11322,7451,8984,9793,9257,9116,7134,7167,9379,8801,10332,8080,10242,7228,10035,7771,8613,9229,10801,9505,9897,8423,9004,8515,13819,9949,7596,11038,10383,8140,10091,12255,8169,9060,8457,7878,10897,9646,9879,8512,10256,7303,10423,9860,8900,11398,12505,9765,12406,10184,9399,8956,10112,14080,10612,10057,10909,10288,9475,12756,12498,10509,7003,11934,10727,11445,8899,8097,8948,8555,7638,9227,8671,6270,8303,10196,7439,9224,7410,7516,7632,11463,8821,10669,8429,9615,7418,8743,8063,9618,9016,10440,8253,8445,8535,9524,8947,8937,9232,9659,8260,10917,8569,8755,9394,12575,9419,11092,11027,7976,10015,8296,9425,7856,9404,8721,10245,9560,10967,10197,11996,10574,10648,8993,10947,9634,8748,10353,9667,8803,9425,10363,11060,12177,11396,9095,10417,8015,744,9795,8289,13353,10920,11502,12165,10016,7828,10512,11708,11984,12640,9945,13016,9947,9413,5634,8588,8181,9470,6642,7276,6376,8653,8335,8958,6161,8612,10155,7763,8683,9912,10720,8923,9640,12037,9225,9420,9586,8525,8766,8380,6766,8194,9540,8269,9693,8283,8270,7000,7877,9191,9683,10518,20464,14497,9866,10919,11801,11354,16541,15478,11479,11015,11249,12037,10271,14281,11174,12374,10550,11549,9059,11493,14847,13192,14221,15215,15679,13624,13624,12547,7719,8525,8027,7621,8510,9167,10876,15571,10824,11624,14953,11387,12598,15709,11127,11937,12162,13618,13438,14211,14763,11315,6883,8791,8658,15017,13520,8388,10289,9932,10333,14158,11497,9838,9752,9055,11016,8753,13079,10130,9546,10194,10428,8317,10964,11377,12952,12589,11385,11919,11761,11664,10793,9680,9121,6793,7867,10164,8826,7927,8422,7896,9063,8048,10788,9703,8853,8834,9444,9358,9403,10545,11086,7127,7554,9342,9364,10607,9745,7879,11650,8659,9476,10665,9406,10628,12265,9670,12329,9719,9134,11560,13772,9842,10384,12308,11573,12008,9995,9211,9653,13323,9680,12357,11555,12488,9947,11301],"marker":{"color":"rgba(31,119,180,1)","size":4,"opacity":0.5,"line":{"color":"rgba(31,119,180,1)"}},"type":"box","line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="column-1" class="section level2" data-width="350">
+<h2>Column</h2>
+<div id="chart-b" class="section level3">
+<h3>Chart B</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-864bde42b0238f8d1245" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-864bde42b0238f8d1245">{"x":{"visdat":{"53cc17fa4b18":["function () ","plotlyVisDat"]},"cur_data":"53cc17fa4b18","attrs":{"53cc17fa4b18":{"x":{},"y":{},"text":{},"textposition":"auto","color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Count of Snow Days by Month in 2000","xaxis":{"domain":[0,1],"automargin":true,"title":"Month","tickvals":[1,2,3,4,5,6,7,8,9,10,11,12],"ticktext":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"barmode":"dodge","legend":{"title":{"text":"Snow Condition"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["01","02","03","04","05","06","07","08","09","10","11","12"],"y":[4113,3728,4888,4924,5556,5373,5590,5359,5275,5499,4725,3475],"text":[4113,3728,4888,4924,5556,5373,5590,5359,5275,5499,4725,3475],"textposition":["auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto"],"type":"bar","name":"no_snow_days","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["01","02","03","04","05","06","07","08","09","10","11","12"],"y":[1394,1282,553,385,0,0,1,0,0,57,543,1728],"text":[1394,1282,553,385,0,0,1,0,0,57,543,1728],"textposition":["auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto"],"type":"bar","name":"snow_days","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="chart-c" class="section level3">
+<h3>Chart C</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b3ab943fe1a200580958" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-b3ab943fe1a200580958">{"x":{"data":[{"x":[10957,10961.620253164558,10966.240506329113,10970.860759493671,10975.481012658227,10980.101265822785,10984.721518987342,10989.341772151898,10993.962025316456,10998.582278481013,11003.202531645569,11007.822784810127,11012.443037974683,11017.06329113924,11021.683544303798,11026.303797468354,11030.924050632912,11035.544303797469,11040.164556962025,11044.784810126583,11049.405063291139,11054.025316455696,11058.645569620254,11063.26582278481,11067.886075949367,11072.506329113923,11077.126582278481,11081.746835443038,11086.367088607594,11090.987341772152,11095.60759493671,11100.227848101265,11104.848101265823,11109.468354430379,11114.088607594937,11118.708860759494,11123.32911392405,11127.949367088608,11132.569620253165,11137.189873417721,11141.810126582279,11146.430379746835,11151.050632911392,11155.67088607595,11160.291139240506,11164.911392405063,11169.531645569621,11174.151898734177,11178.772151898735,11183.39240506329,11188.012658227848,11192.632911392406,11197.253164556962,11201.873417721519,11206.493670886075,11211.113924050633,11215.73417721519,11220.354430379746,11224.974683544304,11229.594936708861,11234.215189873417,11238.835443037975,11243.455696202531,11248.075949367088,11252.696202531646,11257.316455696202,11261.93670886076,11266.556962025317,11271.177215189873,11275.797468354431,11280.417721518987,11285.037974683544,11289.658227848102,11294.278481012658,11298.898734177215,11303.518987341773,11308.139240506329,11312.759493670887,11317.379746835442,11322],"y":[3.2732507386995535,2.3105081687916993,1.3906290211783829,0.55647671815303457,-0.14908531798953706,-0.68319366495572154,-1.0029849004510289,-1.0655956021813149,-0.82816234785245557,-0.24804018523420635,0.68194176125936234,1.8945653104196003,3.3132453770417594,4.8613968759231225,6.4624347218592906,8.0397738296458083,9.5168291140800712,10.817015489957592,11.865695643058286,12.647304501041571,13.214570711696714,13.62402716301747,13.932206742996879,14.195642339628174,14.470866840904858,14.814413134819983,15.28281410936712,15.927604200899555,16.742210845456185,17.682573091777456,18.704005182147863,19.76182135885178,20.811335864174836,21.807862940401034,22.706716829815967,23.463211774704014,24.040878447117986,24.449224220841653,24.713739993191549,24.859932709198809,24.913309313894736,24.899376752310452,24.843641969477108,24.771611910425907,24.708784035026945,24.671208582691524,24.647760806270671,24.622459556130568,24.57932368263738,24.502372036157329,24.375623467056535,24.183096825701199,23.908810962457625,23.536924974822238,23.060012788118875,22.483691310802499,21.814699428372151,21.059776026327075,20.22565999016556,19.319090205386807,18.346805557490107,17.315544931973598,16.232012345696663,15.102285853685977,13.931902070722579,12.726379758843709,11.491237680085177,10.231994596484229,8.9541692700781379,7.6632804629026534,6.364846936995562,5.0639618275951639,3.7623380734508185,2.4600766914172114,1.1572687711918483,-0.14599459752620891,-1.4496223250379217,-2.7535233216457566,-4.0576064976501609,-5.3617807633536199],"text":["as.Date(paste(year, month, day, sep = \"-\")): 10957.00<br />tmax:  3.2732507","as.Date(paste(year, month, day, sep = \"-\")): 10961.62<br />tmax:  2.3105082","as.Date(paste(year, month, day, sep = \"-\")): 10966.24<br />tmax:  1.3906290","as.Date(paste(year, month, day, sep = \"-\")): 10970.86<br />tmax:  0.5564767","as.Date(paste(year, month, day, sep = \"-\")): 10975.48<br />tmax: -0.1490853","as.Date(paste(year, month, day, sep = \"-\")): 10980.10<br />tmax: -0.6831937","as.Date(paste(year, month, day, sep = \"-\")): 10984.72<br />tmax: -1.0029849","as.Date(paste(year, month, day, sep = \"-\")): 10989.34<br />tmax: -1.0655956","as.Date(paste(year, month, day, sep = \"-\")): 10993.96<br />tmax: -0.8281623","as.Date(paste(year, month, day, sep = \"-\")): 10998.58<br />tmax: -0.2480402","as.Date(paste(year, month, day, sep = \"-\")): 11003.20<br />tmax:  0.6819418","as.Date(paste(year, month, day, sep = \"-\")): 11007.82<br />tmax:  1.8945653","as.Date(paste(year, month, day, sep = \"-\")): 11012.44<br />tmax:  3.3132454","as.Date(paste(year, month, day, sep = \"-\")): 11017.06<br />tmax:  4.8613969","as.Date(paste(year, month, day, sep = \"-\")): 11021.68<br />tmax:  6.4624347","as.Date(paste(year, month, day, sep = \"-\")): 11026.30<br />tmax:  8.0397738","as.Date(paste(year, month, day, sep = \"-\")): 11030.92<br />tmax:  9.5168291","as.Date(paste(year, month, day, sep = \"-\")): 11035.54<br />tmax: 10.8170155","as.Date(paste(year, month, day, sep = \"-\")): 11040.16<br />tmax: 11.8656956","as.Date(paste(year, month, day, sep = \"-\")): 11044.78<br />tmax: 12.6473045","as.Date(paste(year, month, day, sep = \"-\")): 11049.41<br />tmax: 13.2145707","as.Date(paste(year, month, day, sep = \"-\")): 11054.03<br />tmax: 13.6240272","as.Date(paste(year, month, day, sep = \"-\")): 11058.65<br />tmax: 13.9322067","as.Date(paste(year, month, day, sep = \"-\")): 11063.27<br />tmax: 14.1956423","as.Date(paste(year, month, day, sep = \"-\")): 11067.89<br />tmax: 14.4708668","as.Date(paste(year, month, day, sep = \"-\")): 11072.51<br />tmax: 14.8144131","as.Date(paste(year, month, day, sep = \"-\")): 11077.13<br />tmax: 15.2828141","as.Date(paste(year, month, day, sep = \"-\")): 11081.75<br />tmax: 15.9276042","as.Date(paste(year, month, day, sep = \"-\")): 11086.37<br />tmax: 16.7422108","as.Date(paste(year, month, day, sep = \"-\")): 11090.99<br />tmax: 17.6825731","as.Date(paste(year, month, day, sep = \"-\")): 11095.61<br />tmax: 18.7040052","as.Date(paste(year, month, day, sep = \"-\")): 11100.23<br />tmax: 19.7618214","as.Date(paste(year, month, day, sep = \"-\")): 11104.85<br />tmax: 20.8113359","as.Date(paste(year, month, day, sep = \"-\")): 11109.47<br />tmax: 21.8078629","as.Date(paste(year, month, day, sep = \"-\")): 11114.09<br />tmax: 22.7067168","as.Date(paste(year, month, day, sep = \"-\")): 11118.71<br />tmax: 23.4632118","as.Date(paste(year, month, day, sep = \"-\")): 11123.33<br />tmax: 24.0408784","as.Date(paste(year, month, day, sep = \"-\")): 11127.95<br />tmax: 24.4492242","as.Date(paste(year, month, day, sep = \"-\")): 11132.57<br />tmax: 24.7137400","as.Date(paste(year, month, day, sep = \"-\")): 11137.19<br />tmax: 24.8599327","as.Date(paste(year, month, day, sep = \"-\")): 11141.81<br />tmax: 24.9133093","as.Date(paste(year, month, day, sep = \"-\")): 11146.43<br />tmax: 24.8993768","as.Date(paste(year, month, day, sep = \"-\")): 11151.05<br />tmax: 24.8436420","as.Date(paste(year, month, day, sep = \"-\")): 11155.67<br />tmax: 24.7716119","as.Date(paste(year, month, day, sep = \"-\")): 11160.29<br />tmax: 24.7087840","as.Date(paste(year, month, day, sep = \"-\")): 11164.91<br />tmax: 24.6712086","as.Date(paste(year, month, day, sep = \"-\")): 11169.53<br />tmax: 24.6477608","as.Date(paste(year, month, day, sep = \"-\")): 11174.15<br />tmax: 24.6224596","as.Date(paste(year, month, day, sep = \"-\")): 11178.77<br />tmax: 24.5793237","as.Date(paste(year, month, day, sep = \"-\")): 11183.39<br />tmax: 24.5023720","as.Date(paste(year, month, day, sep = \"-\")): 11188.01<br />tmax: 24.3756235","as.Date(paste(year, month, day, sep = \"-\")): 11192.63<br />tmax: 24.1830968","as.Date(paste(year, month, day, sep = \"-\")): 11197.25<br />tmax: 23.9088110","as.Date(paste(year, month, day, sep = \"-\")): 11201.87<br />tmax: 23.5369250","as.Date(paste(year, month, day, sep = \"-\")): 11206.49<br />tmax: 23.0600128","as.Date(paste(year, month, day, sep = \"-\")): 11211.11<br />tmax: 22.4836913","as.Date(paste(year, month, day, sep = \"-\")): 11215.73<br />tmax: 21.8146994","as.Date(paste(year, month, day, sep = \"-\")): 11220.35<br />tmax: 21.0597760","as.Date(paste(year, month, day, sep = \"-\")): 11224.97<br />tmax: 20.2256600","as.Date(paste(year, month, day, sep = \"-\")): 11229.59<br />tmax: 19.3190902","as.Date(paste(year, month, day, sep = \"-\")): 11234.22<br />tmax: 18.3468056","as.Date(paste(year, month, day, sep = \"-\")): 11238.84<br />tmax: 17.3155449","as.Date(paste(year, month, day, sep = \"-\")): 11243.46<br />tmax: 16.2320123","as.Date(paste(year, month, day, sep = \"-\")): 11248.08<br />tmax: 15.1022859","as.Date(paste(year, month, day, sep = \"-\")): 11252.70<br />tmax: 13.9319021","as.Date(paste(year, month, day, sep = \"-\")): 11257.32<br />tmax: 12.7263798","as.Date(paste(year, month, day, sep = \"-\")): 11261.94<br />tmax: 11.4912377","as.Date(paste(year, month, day, sep = \"-\")): 11266.56<br />tmax: 10.2319946","as.Date(paste(year, month, day, sep = \"-\")): 11271.18<br />tmax:  8.9541693","as.Date(paste(year, month, day, sep = \"-\")): 11275.80<br />tmax:  7.6632805","as.Date(paste(year, month, day, sep = \"-\")): 11280.42<br />tmax:  6.3648469","as.Date(paste(year, month, day, sep = \"-\")): 11285.04<br />tmax:  5.0639618","as.Date(paste(year, month, day, sep = \"-\")): 11289.66<br />tmax:  3.7623381","as.Date(paste(year, month, day, sep = \"-\")): 11294.28<br />tmax:  2.4600767","as.Date(paste(year, month, day, sep = \"-\")): 11298.90<br />tmax:  1.1572688","as.Date(paste(year, month, day, sep = \"-\")): 11303.52<br />tmax: -0.1459946","as.Date(paste(year, month, day, sep = \"-\")): 11308.14<br />tmax: -1.4496223","as.Date(paste(year, month, day, sep = \"-\")): 11312.76<br />tmax: -2.7535233","as.Date(paste(year, month, day, sep = \"-\")): 11317.38<br />tmax: -4.0576065","as.Date(paste(year, month, day, sep = \"-\")): 11322.00<br />tmax: -5.3617808"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.7795275590551185,"color":"rgba(51,102,255,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10957,10961.620253164558,10966.240506329113,10970.860759493671,10975.481012658227,10980.101265822785,10984.721518987342,10989.341772151898,10993.962025316456,10998.582278481013,11003.202531645569,11007.822784810127,11012.443037974683,11017.06329113924,11021.683544303798,11026.303797468354,11030.924050632912,11035.544303797469,11040.164556962025,11044.784810126583,11049.405063291139,11054.025316455696,11058.645569620254,11063.26582278481,11067.886075949367,11072.506329113923,11077.126582278481,11081.746835443038,11086.367088607594,11090.987341772152,11095.60759493671,11100.227848101265,11104.848101265823,11109.468354430379,11114.088607594937,11118.708860759494,11123.32911392405,11127.949367088608,11132.569620253165,11137.189873417721,11141.810126582279,11146.430379746835,11151.050632911392,11155.67088607595,11160.291139240506,11164.911392405063,11169.531645569621,11174.151898734177,11178.772151898735,11183.39240506329,11188.012658227848,11192.632911392406,11197.253164556962,11201.873417721519,11206.493670886075,11211.113924050633,11215.73417721519,11220.354430379746,11224.974683544304,11229.594936708861,11234.215189873417,11238.835443037975,11243.455696202531,11248.075949367088,11252.696202531646,11257.316455696202,11261.93670886076,11266.556962025317,11271.177215189873,11275.797468354431,11280.417721518987,11285.037974683544,11289.658227848102,11294.278481012658,11298.898734177215,11303.518987341773,11308.139240506329,11312.759493670887,11317.379746835442,11322,11322,11322,11317.379746835442,11312.759493670887,11308.139240506329,11303.518987341773,11298.898734177215,11294.278481012658,11289.658227848102,11285.037974683544,11280.417721518987,11275.797468354431,11271.177215189873,11266.556962025317,11261.93670886076,11257.316455696202,11252.696202531646,11248.075949367088,11243.455696202531,11238.835443037975,11234.215189873417,11229.594936708861,11224.974683544304,11220.354430379746,11215.73417721519,11211.113924050633,11206.493670886075,11201.873417721519,11197.253164556962,11192.632911392406,11188.012658227848,11183.39240506329,11178.772151898735,11174.151898734177,11169.531645569621,11164.911392405063,11160.291139240506,11155.67088607595,11151.050632911392,11146.430379746835,11141.810126582279,11137.189873417721,11132.569620253165,11127.949367088608,11123.32911392405,11118.708860759494,11114.088607594937,11109.468354430379,11104.848101265823,11100.227848101265,11095.60759493671,11090.987341772152,11086.367088607594,11081.746835443038,11077.126582278481,11072.506329113923,11067.886075949367,11063.26582278481,11058.645569620254,11054.025316455696,11049.405063291139,11044.784810126583,11040.164556962025,11035.544303797469,11030.924050632912,11026.303797468354,11021.683544303798,11017.06329113924,11012.443037974683,11007.822784810127,11003.202531645569,10998.582278481013,10993.962025316456,10989.341772151898,10984.721518987342,10980.101265822785,10975.481012658227,10970.860759493671,10966.240506329113,10961.620253164558,10957,10957],"y":[2.9807311277702389,2.0691760523742095,1.1940436383215147,0.39406389213288395,-0.29198516396953877,-0.82198887441460866,-1.1481695341481655,-1.2202907428996066,-0.98956856123769366,-0.40977381036852945,0.5267597711602594,1.7495647721985434,3.1775771957260481,4.7299122776049654,6.3279325156635249,7.89665929408915,9.3636539917762249,10.656884270001694,11.705327307172199,12.493571203150918,13.070720628886589,13.488690010378983,13.799843572815115,14.059145257449307,14.325248847390757,14.659051609623344,15.121607934485917,15.767732707066136,16.589967206962353,17.5402593805394,18.569231806846837,19.628392478420398,20.672296147750103,21.659080314334741,22.548637202816437,23.300679963750518,23.881422539637313,24.298454076508374,24.572984717599425,24.725794277822747,24.779008762201837,24.758181143479593,24.692252375897983,24.611448322275177,24.545506893456917,24.512337301339389,24.498062401951973,24.482246959790483,24.444330443897819,24.365594979989439,24.230935490080896,24.02823616088655,23.746215240771932,23.373022193051195,22.902112446325336,22.335806175962411,21.676301137681829,20.925921917064812,20.089193070938766,19.174344749508549,18.19228329653739,17.154416476907357,16.071126358624216,14.948363046980663,13.788042039734488,12.591111671329909,11.358932697075531,10.095424224635703,8.8081779967768199,7.5070361347080361,6.2020206329431558,4.9014990328218344,3.6067036293257853,2.3141587926916034,1.0180253769226286,-0.28904779900262417,-1.6120033590919374,-2.9500526088369576,-4.2989804014824138,-5.6545092120029281,-5.6545092120029281,-5.0690523147043116,-3.816232593817908,-2.5569940344545556,-1.2872412909839059,-0.0029413960497936542,1.2965121654610681,2.6059945901428194,3.9179725175758517,5.2264246223684934,6.5276732410479683,7.8195247910972707,9.1001605433794559,10.368564968332755,11.623542663094824,12.86164784635751,14.075762101710669,15.256208660391291,16.392898332769111,17.476673387039838,18.501327818442824,19.463835661265065,20.362126909392355,21.193630135589338,21.953097719062473,22.631576445642587,23.217913129912414,23.700827756593281,24.071406684143319,24.337957490515848,24.520311444032174,24.639149092325219,24.714316921376941,24.762672152470653,24.79745921058937,24.830079864043658,24.872061176596972,24.931775498576638,24.995031563056234,25.040572361141312,25.047609865587635,24.994071140574871,24.854495268783673,24.599994365174933,24.20033435459866,23.62574358565751,22.864796456815498,21.956645566467326,20.95037558059957,19.895250239283161,18.83877855744889,17.824886803015513,16.894454483950017,16.087475694732973,15.444020284248323,14.969774660016622,14.616484834418959,14.332139421807041,14.064569913178643,13.759364315655956,13.35842079450684,12.801037798932224,12.026063978944373,10.977146709913491,9.6700042363839174,8.1828883652024658,6.5969369280550563,4.9928814742412797,3.4489135583574706,2.0395658486406569,0.83712375135846528,-0.086306560099883217,-0.66675613446721749,-0.91090046146302317,-0.85780026675389254,-0.54439845549683441,-0.0061854720095353699,0.71888954417318518,1.5872144040352512,2.551840285209189,3.5657703496288682,2.9807311277702389],"text":["as.Date(paste(year, month, day, sep = \"-\")): 10957.00<br />tmax:  3.2732507","as.Date(paste(year, month, day, sep = \"-\")): 10961.62<br />tmax:  2.3105082","as.Date(paste(year, month, day, sep = \"-\")): 10966.24<br />tmax:  1.3906290","as.Date(paste(year, month, day, sep = \"-\")): 10970.86<br />tmax:  0.5564767","as.Date(paste(year, month, day, sep = \"-\")): 10975.48<br />tmax: -0.1490853","as.Date(paste(year, month, day, sep = \"-\")): 10980.10<br />tmax: -0.6831937","as.Date(paste(year, month, day, sep = \"-\")): 10984.72<br />tmax: -1.0029849","as.Date(paste(year, month, day, sep = \"-\")): 10989.34<br />tmax: -1.0655956","as.Date(paste(year, month, day, sep = \"-\")): 10993.96<br />tmax: -0.8281623","as.Date(paste(year, month, day, sep = \"-\")): 10998.58<br />tmax: -0.2480402","as.Date(paste(year, month, day, sep = \"-\")): 11003.20<br />tmax:  0.6819418","as.Date(paste(year, month, day, sep = \"-\")): 11007.82<br />tmax:  1.8945653","as.Date(paste(year, month, day, sep = \"-\")): 11012.44<br />tmax:  3.3132454","as.Date(paste(year, month, day, sep = \"-\")): 11017.06<br />tmax:  4.8613969","as.Date(paste(year, month, day, sep = \"-\")): 11021.68<br />tmax:  6.4624347","as.Date(paste(year, month, day, sep = \"-\")): 11026.30<br />tmax:  8.0397738","as.Date(paste(year, month, day, sep = \"-\")): 11030.92<br />tmax:  9.5168291","as.Date(paste(year, month, day, sep = \"-\")): 11035.54<br />tmax: 10.8170155","as.Date(paste(year, month, day, sep = \"-\")): 11040.16<br />tmax: 11.8656956","as.Date(paste(year, month, day, sep = \"-\")): 11044.78<br />tmax: 12.6473045","as.Date(paste(year, month, day, sep = \"-\")): 11049.41<br />tmax: 13.2145707","as.Date(paste(year, month, day, sep = \"-\")): 11054.03<br />tmax: 13.6240272","as.Date(paste(year, month, day, sep = \"-\")): 11058.65<br />tmax: 13.9322067","as.Date(paste(year, month, day, sep = \"-\")): 11063.27<br />tmax: 14.1956423","as.Date(paste(year, month, day, sep = \"-\")): 11067.89<br />tmax: 14.4708668","as.Date(paste(year, month, day, sep = \"-\")): 11072.51<br />tmax: 14.8144131","as.Date(paste(year, month, day, sep = \"-\")): 11077.13<br />tmax: 15.2828141","as.Date(paste(year, month, day, sep = \"-\")): 11081.75<br />tmax: 15.9276042","as.Date(paste(year, month, day, sep = \"-\")): 11086.37<br />tmax: 16.7422108","as.Date(paste(year, month, day, sep = \"-\")): 11090.99<br />tmax: 17.6825731","as.Date(paste(year, month, day, sep = \"-\")): 11095.61<br />tmax: 18.7040052","as.Date(paste(year, month, day, sep = \"-\")): 11100.23<br />tmax: 19.7618214","as.Date(paste(year, month, day, sep = \"-\")): 11104.85<br />tmax: 20.8113359","as.Date(paste(year, month, day, sep = \"-\")): 11109.47<br />tmax: 21.8078629","as.Date(paste(year, month, day, sep = \"-\")): 11114.09<br />tmax: 22.7067168","as.Date(paste(year, month, day, sep = \"-\")): 11118.71<br />tmax: 23.4632118","as.Date(paste(year, month, day, sep = \"-\")): 11123.33<br />tmax: 24.0408784","as.Date(paste(year, month, day, sep = \"-\")): 11127.95<br />tmax: 24.4492242","as.Date(paste(year, month, day, sep = \"-\")): 11132.57<br />tmax: 24.7137400","as.Date(paste(year, month, day, sep = \"-\")): 11137.19<br />tmax: 24.8599327","as.Date(paste(year, month, day, sep = \"-\")): 11141.81<br />tmax: 24.9133093","as.Date(paste(year, month, day, sep = \"-\")): 11146.43<br />tmax: 24.8993768","as.Date(paste(year, month, day, sep = \"-\")): 11151.05<br />tmax: 24.8436420","as.Date(paste(year, month, day, sep = \"-\")): 11155.67<br />tmax: 24.7716119","as.Date(paste(year, month, day, sep = \"-\")): 11160.29<br />tmax: 24.7087840","as.Date(paste(year, month, day, sep = \"-\")): 11164.91<br />tmax: 24.6712086","as.Date(paste(year, month, day, sep = \"-\")): 11169.53<br />tmax: 24.6477608","as.Date(paste(year, month, day, sep = \"-\")): 11174.15<br />tmax: 24.6224596","as.Date(paste(year, month, day, sep = \"-\")): 11178.77<br />tmax: 24.5793237","as.Date(paste(year, month, day, sep = \"-\")): 11183.39<br />tmax: 24.5023720","as.Date(paste(year, month, day, sep = \"-\")): 11188.01<br />tmax: 24.3756235","as.Date(paste(year, month, day, sep = \"-\")): 11192.63<br />tmax: 24.1830968","as.Date(paste(year, month, day, sep = \"-\")): 11197.25<br />tmax: 23.9088110","as.Date(paste(year, month, day, sep = \"-\")): 11201.87<br />tmax: 23.5369250","as.Date(paste(year, month, day, sep = \"-\")): 11206.49<br />tmax: 23.0600128","as.Date(paste(year, month, day, sep = \"-\")): 11211.11<br />tmax: 22.4836913","as.Date(paste(year, month, day, sep = \"-\")): 11215.73<br />tmax: 21.8146994","as.Date(paste(year, month, day, sep = \"-\")): 11220.35<br />tmax: 21.0597760","as.Date(paste(year, month, day, sep = \"-\")): 11224.97<br />tmax: 20.2256600","as.Date(paste(year, month, day, sep = \"-\")): 11229.59<br />tmax: 19.3190902","as.Date(paste(year, month, day, sep = \"-\")): 11234.22<br />tmax: 18.3468056","as.Date(paste(year, month, day, sep = \"-\")): 11238.84<br />tmax: 17.3155449","as.Date(paste(year, month, day, sep = \"-\")): 11243.46<br />tmax: 16.2320123","as.Date(paste(year, month, day, sep = \"-\")): 11248.08<br />tmax: 15.1022859","as.Date(paste(year, month, day, sep = \"-\")): 11252.70<br />tmax: 13.9319021","as.Date(paste(year, month, day, sep = \"-\")): 11257.32<br />tmax: 12.7263798","as.Date(paste(year, month, day, sep = \"-\")): 11261.94<br />tmax: 11.4912377","as.Date(paste(year, month, day, sep = \"-\")): 11266.56<br />tmax: 10.2319946","as.Date(paste(year, month, day, sep = \"-\")): 11271.18<br />tmax:  8.9541693","as.Date(paste(year, month, day, sep = \"-\")): 11275.80<br />tmax:  7.6632805","as.Date(paste(year, month, day, sep = \"-\")): 11280.42<br />tmax:  6.3648469","as.Date(paste(year, month, day, sep = \"-\")): 11285.04<br />tmax:  5.0639618","as.Date(paste(year, month, day, sep = \"-\")): 11289.66<br />tmax:  3.7623381","as.Date(paste(year, month, day, sep = \"-\")): 11294.28<br />tmax:  2.4600767","as.Date(paste(year, month, day, sep = \"-\")): 11298.90<br />tmax:  1.1572688","as.Date(paste(year, month, day, sep = \"-\")): 11303.52<br />tmax: -0.1459946","as.Date(paste(year, month, day, sep = \"-\")): 11308.14<br />tmax: -1.4496223","as.Date(paste(year, month, day, sep = \"-\")): 11312.76<br />tmax: -2.7535233","as.Date(paste(year, month, day, sep = \"-\")): 11317.38<br />tmax: -4.0576065","as.Date(paste(year, month, day, sep = \"-\")): 11322.00<br />tmax: -5.3617808","as.Date(paste(year, month, day, sep = \"-\")): 11322.00<br />tmax: -5.3617808","as.Date(paste(year, month, day, sep = \"-\")): 11322.00<br />tmax: -5.3617808","as.Date(paste(year, month, day, sep = \"-\")): 11317.38<br />tmax: -4.0576065","as.Date(paste(year, month, day, sep = \"-\")): 11312.76<br />tmax: -2.7535233","as.Date(paste(year, month, day, sep = \"-\")): 11308.14<br />tmax: -1.4496223","as.Date(paste(year, month, day, sep = \"-\")): 11303.52<br />tmax: -0.1459946","as.Date(paste(year, month, day, sep = \"-\")): 11298.90<br />tmax:  1.1572688","as.Date(paste(year, month, day, sep = \"-\")): 11294.28<br />tmax:  2.4600767","as.Date(paste(year, month, day, sep = \"-\")): 11289.66<br />tmax:  3.7623381","as.Date(paste(year, month, day, sep = \"-\")): 11285.04<br />tmax:  5.0639618","as.Date(paste(year, month, day, sep = \"-\")): 11280.42<br />tmax:  6.3648469","as.Date(paste(year, month, day, sep = \"-\")): 11275.80<br />tmax:  7.6632805","as.Date(paste(year, month, day, sep = \"-\")): 11271.18<br />tmax:  8.9541693","as.Date(paste(year, month, day, sep = \"-\")): 11266.56<br />tmax: 10.2319946","as.Date(paste(year, month, day, sep = \"-\")): 11261.94<br />tmax: 11.4912377","as.Date(paste(year, month, day, sep = \"-\")): 11257.32<br />tmax: 12.7263798","as.Date(paste(year, month, day, sep = \"-\")): 11252.70<br />tmax: 13.9319021","as.Date(paste(year, month, day, sep = \"-\")): 11248.08<br />tmax: 15.1022859","as.Date(paste(year, month, day, sep = \"-\")): 11243.46<br />tmax: 16.2320123","as.Date(paste(year, month, day, sep = \"-\")): 11238.84<br />tmax: 17.3155449","as.Date(paste(year, month, day, sep = \"-\")): 11234.22<br />tmax: 18.3468056","as.Date(paste(year, month, day, sep = \"-\")): 11229.59<br />tmax: 19.3190902","as.Date(paste(year, month, day, sep = \"-\")): 11224.97<br />tmax: 20.2256600","as.Date(paste(year, month, day, sep = \"-\")): 11220.35<br />tmax: 21.0597760","as.Date(paste(year, month, day, sep = \"-\")): 11215.73<br />tmax: 21.8146994","as.Date(paste(year, month, day, sep = \"-\")): 11211.11<br />tmax: 22.4836913","as.Date(paste(year, month, day, sep = \"-\")): 11206.49<br />tmax: 23.0600128","as.Date(paste(year, month, day, sep = \"-\")): 11201.87<br />tmax: 23.5369250","as.Date(paste(year, month, day, sep = \"-\")): 11197.25<br />tmax: 23.9088110","as.Date(paste(year, month, day, sep = \"-\")): 11192.63<br />tmax: 24.1830968","as.Date(paste(year, month, day, sep = \"-\")): 11188.01<br />tmax: 24.3756235","as.Date(paste(year, month, day, sep = \"-\")): 11183.39<br />tmax: 24.5023720","as.Date(paste(year, month, day, sep = \"-\")): 11178.77<br />tmax: 24.5793237","as.Date(paste(year, month, day, sep = \"-\")): 11174.15<br />tmax: 24.6224596","as.Date(paste(year, month, day, sep = \"-\")): 11169.53<br />tmax: 24.6477608","as.Date(paste(year, month, day, sep = \"-\")): 11164.91<br />tmax: 24.6712086","as.Date(paste(year, month, day, sep = \"-\")): 11160.29<br />tmax: 24.7087840","as.Date(paste(year, month, day, sep = \"-\")): 11155.67<br />tmax: 24.7716119","as.Date(paste(year, month, day, sep = \"-\")): 11151.05<br />tmax: 24.8436420","as.Date(paste(year, month, day, sep = \"-\")): 11146.43<br />tmax: 24.8993768","as.Date(paste(year, month, day, sep = \"-\")): 11141.81<br />tmax: 24.9133093","as.Date(paste(year, month, day, sep = \"-\")): 11137.19<br />tmax: 24.8599327","as.Date(paste(year, month, day, sep = \"-\")): 11132.57<br />tmax: 24.7137400","as.Date(paste(year, month, day, sep = \"-\")): 11127.95<br />tmax: 24.4492242","as.Date(paste(year, month, day, sep = \"-\")): 11123.33<br />tmax: 24.0408784","as.Date(paste(year, month, day, sep = \"-\")): 11118.71<br />tmax: 23.4632118","as.Date(paste(year, month, day, sep = \"-\")): 11114.09<br />tmax: 22.7067168","as.Date(paste(year, month, day, sep = \"-\")): 11109.47<br />tmax: 21.8078629","as.Date(paste(year, month, day, sep = \"-\")): 11104.85<br />tmax: 20.8113359","as.Date(paste(year, month, day, sep = \"-\")): 11100.23<br />tmax: 19.7618214","as.Date(paste(year, month, day, sep = \"-\")): 11095.61<br />tmax: 18.7040052","as.Date(paste(year, month, day, sep = \"-\")): 11090.99<br />tmax: 17.6825731","as.Date(paste(year, month, day, sep = \"-\")): 11086.37<br />tmax: 16.7422108","as.Date(paste(year, month, day, sep = \"-\")): 11081.75<br />tmax: 15.9276042","as.Date(paste(year, month, day, sep = \"-\")): 11077.13<br />tmax: 15.2828141","as.Date(paste(year, month, day, sep = \"-\")): 11072.51<br />tmax: 14.8144131","as.Date(paste(year, month, day, sep = \"-\")): 11067.89<br />tmax: 14.4708668","as.Date(paste(year, month, day, sep = \"-\")): 11063.27<br />tmax: 14.1956423","as.Date(paste(year, month, day, sep = \"-\")): 11058.65<br />tmax: 13.9322067","as.Date(paste(year, month, day, sep = \"-\")): 11054.03<br />tmax: 13.6240272","as.Date(paste(year, month, day, sep = \"-\")): 11049.41<br />tmax: 13.2145707","as.Date(paste(year, month, day, sep = \"-\")): 11044.78<br />tmax: 12.6473045","as.Date(paste(year, month, day, sep = \"-\")): 11040.16<br />tmax: 11.8656956","as.Date(paste(year, month, day, sep = \"-\")): 11035.54<br />tmax: 10.8170155","as.Date(paste(year, month, day, sep = \"-\")): 11030.92<br />tmax:  9.5168291","as.Date(paste(year, month, day, sep = \"-\")): 11026.30<br />tmax:  8.0397738","as.Date(paste(year, month, day, sep = \"-\")): 11021.68<br />tmax:  6.4624347","as.Date(paste(year, month, day, sep = \"-\")): 11017.06<br />tmax:  4.8613969","as.Date(paste(year, month, day, sep = \"-\")): 11012.44<br />tmax:  3.3132454","as.Date(paste(year, month, day, sep = \"-\")): 11007.82<br />tmax:  1.8945653","as.Date(paste(year, month, day, sep = \"-\")): 11003.20<br />tmax:  0.6819418","as.Date(paste(year, month, day, sep = \"-\")): 10998.58<br />tmax: -0.2480402","as.Date(paste(year, month, day, sep = \"-\")): 10993.96<br />tmax: -0.8281623","as.Date(paste(year, month, day, sep = \"-\")): 10989.34<br />tmax: -1.0655956","as.Date(paste(year, month, day, sep = \"-\")): 10984.72<br />tmax: -1.0029849","as.Date(paste(year, month, day, sep = \"-\")): 10980.10<br />tmax: -0.6831937","as.Date(paste(year, month, day, sep = \"-\")): 10975.48<br />tmax: -0.1490853","as.Date(paste(year, month, day, sep = \"-\")): 10970.86<br />tmax:  0.5564767","as.Date(paste(year, month, day, sep = \"-\")): 10966.24<br />tmax:  1.3906290","as.Date(paste(year, month, day, sep = \"-\")): 10961.62<br />tmax:  2.3105082","as.Date(paste(year, month, day, sep = \"-\")): 10957.00<br />tmax:  3.2732507","as.Date(paste(year, month, day, sep = \"-\")): 10957.00<br />tmax:  3.2732507"],"type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","showlegend":false,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":42.682549136390719,"r":7.3059360730593621,"b":39.102640460591637,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Maximum Temperature Over Time in 2000","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342468},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[10938.75,11340.25],"tickmode":"array","ticktext":["Jan 2000","Apr 2000","Jul 2000","Oct 2000","Jan 2001"],"tickvals":[10957,11048,11139,11231,11323],"categoryorder":"array","categoryarray":["Jan 2000","Apr 2000","Jul 2000","Oct 2000","Jan 2001"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716894984},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-7.1896151658824561,26.582715819467165],"tickmode":"array","ticktext":["0","10","20"],"tickvals":[0,10.000000000000002,20],"categoryorder":"array","categoryarray":["0","10","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Temperature Difference (tdiff)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716894984}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"53cc6a3668e6":{"x":{},"y":{},"type":"scatter"}},"cur_data":"53cc6a3668e6","visdat":{"53cc6a3668e6":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+  // add bootstrap table styles to pandoc tables
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed table-sm');
+
+  // initialize mathjax
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+  document.getElementsByTagName("head")[0].appendChild(script);
+
+});
+</script>
+
+<div id="flexdashboard-source-code">
+<pre class="line-numbers"><code class="language-r">---
+title: "Dashboard"
+author: "Senna"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+library(flexdashboard)
+```
+
+```{r}
+noaa_df = ny_noaa|&gt;
+   separate(date, into = c("year", "month", "day"), sep = "-")|&gt;
+  mutate(
+    tmax = (as.numeric(tmax))/10,
+    tmin = (as.numeric(tmin))/10,
+    tdiff = tmax-tmin
+  )
+```
+
+Column {data-width=650 .tabset}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+noaa_df |&gt;
+  group_by(id, year) |&gt;  
+  summarize(total_prcp = sum(prcp)) |&gt;
+  ungroup()|&gt;
+  plot_ly(
+        x = ~factor(year), 
+        y = ~total_prcp, 
+        type = 'box', 
+        jitter = 0.3,       
+        pointpos = -1.8,    
+        text = ~total_prcp, 
+        marker = list(size = 4, opacity = 0.5)) |&gt;
+  layout(
+    title = "Distribution of Total Precipitation by Year",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Total Precipitation")
+  )
+```
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+noaa_df |&gt;
+  filter(year == 2000) |&gt;
+  group_by(month) |&gt;
+  summarise(
+    no_snow_days = sum(snow == 0, na.rm = TRUE),
+    snow_days = sum(snow &gt; 0, na.rm = TRUE)) |&gt;
+  pivot_longer(cols = c(no_snow_days, snow_days),
+               names_to = "snow_condition",
+               values_to = "count")|&gt;
+  plot_ly( x = ~factor(month), y = ~count, color = ~snow_condition, 
+        type = 'bar', 
+        text = ~count,
+        textposition = 'auto') |&gt;
+  layout(
+    title = "Count of Snow Days by Month in 2000",
+    xaxis = list(title = "Month", tickvals = 1:12, ticktext = month.abb),
+    yaxis = list(title = "Count"),
+    barmode = 'dodge',
+    legend = list(title = list(text = 'Snow Condition'))
+  )
+```
+
+### Chart C
+
+```{r}
+tmax_2000=noaa_df|&gt;
+  filter (year == 2000)|&gt;
+  ggplot(aes(x = as.Date(paste(year, month, day, sep = "-")), y = tmax)) +
+  geom_smooth() +
+  labs(
+    title = "Maximum Temperature Over Time in 2000",
+    x = "Date",
+    y = "Temperature Difference (tdiff)"
+  ) +
+  theme_minimal()
+
+ggplotly(tmax_2000)
+```
+
+
+
+</code></pre>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+  FlexDashboard.init({
+    fillPage: true,
+    orientation: "columns",
+    storyboard: false,
+    defaultFigWidth: 576,
+    defaultFigHeight: 460,
+    defaultFigWidthMobile: 360,
+    defaultFigHeightMobile: 460,
+    resize_reload: true
+  });
+  var navbar = $(".navbar").first();
+  var body = $("body").first();
+  var sidebar = $(".section.sidebar").first();
+  function addNavbarPadding() {
+    var navHeight = navbar.outerHeight();
+    body.css("padding-top", (navHeight + 8) + "px");
+    sidebar.css("top", navHeight + "px");
+    var resizeEvent = window.document.createEvent("UIEvents");
+    resizeEvent.initUIEvent("resize", true, false, window, 0);
+    window.dispatchEvent(resizeEvent);
+  }
+  if (!window.Shiny) setTimeout(addNavbarPadding, 100);
+  $(document).on("shiny:idle", function() {
+    setTimeout(addNavbarPadding, 50);
+  });
+});
+</script>
+
+</body>
+</html>

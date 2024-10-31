@@ -1,0 +1,100 @@
+---
+title: "Dashboard"
+author: "Senna"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+library(flexdashboard)
+```
+
+```{r}
+noaa_df = ny_noaa|>
+   separate(date, into = c("year", "month", "day"), sep = "-")|>
+  mutate(
+    tmax = (as.numeric(tmax))/10,
+    tmin = (as.numeric(tmin))/10,
+    tdiff = tmax-tmin
+  )
+```
+
+Column {data-width=650 .tabset}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+noaa_df |>
+  group_by(id, year) |>  
+  summarize(total_prcp = sum(prcp)) |>
+  ungroup()|>
+  plot_ly(
+        x = ~factor(year), 
+        y = ~total_prcp, 
+        type = 'box', 
+        jitter = 0.3,       
+        pointpos = -1.8,    
+        text = ~total_prcp, 
+        marker = list(size = 4, opacity = 0.5)) |>
+  layout(
+    title = "Distribution of Total Precipitation by Year",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Total Precipitation")
+  )
+```
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+noaa_df |>
+  filter(year == 2000) |>
+  group_by(month) |>
+  summarise(
+    no_snow_days = sum(snow == 0, na.rm = TRUE),
+    snow_days = sum(snow > 0, na.rm = TRUE)) |>
+  pivot_longer(cols = c(no_snow_days, snow_days),
+               names_to = "snow_condition",
+               values_to = "count")|>
+  plot_ly( x = ~factor(month), y = ~count, color = ~snow_condition, 
+        type = 'bar', 
+        text = ~count,
+        textposition = 'auto') |>
+  layout(
+    title = "Count of Snow Days by Month in 2000",
+    xaxis = list(title = "Month", tickvals = 1:12, ticktext = month.abb),
+    yaxis = list(title = "Count"),
+    barmode = 'dodge',
+    legend = list(title = list(text = 'Snow Condition'))
+  )
+```
+
+### Chart C
+
+```{r}
+tmax_2000=noaa_df|>
+  filter (year == 2000)|>
+  ggplot(aes(x = as.Date(paste(year, month, day, sep = "-")), y = tmax)) +
+  geom_smooth() +
+  labs(
+    title = "Maximum Temperature Over Time in 2000",
+    x = "Date",
+    y = "Temperature Difference (tdiff)"
+  ) +
+  theme_minimal()
+
+ggplotly(tmax_2000)
+```
+
+
+
